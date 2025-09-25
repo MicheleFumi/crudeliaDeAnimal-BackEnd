@@ -1,0 +1,74 @@
+INSERT INTO `prodotto-animali`
+(prezzo, quantita_disponibile, categoria, tipo_animale, immagine_url, descrizione, nome_prodotto)
+Values
+
+
+-- 🐶 CANE (5 prodotti)
+(19.99, 50, 'Alimentazione', 'Cane', 'https://i.ebayimg.com/images/g/c-EAAOSwvbtnq0Rs/s-l1600.jpg',
+'Crocchette premium al pollo 2,5kg', 'Crocchette Cane Pollo 2,5kg'),
+(8.50, 80, 'Accessori', 'Cane', 'https://m.media-amazon.com/images/I/61-QSwheb5L.jpg',
+'Guinzaglio in nylon regolabile', 'Guinzaglio Nylon'),
+(14.90, 40, 'Giochi', 'Cane', 'https://www.lomartireshop.it/823-large_default/palla-basket-in-gomma-con-finitura-neon-colori-assortiti-65-cm-leopet.jpg',
+'Palla in gomma naturale per masticazione', 'Palla Gomma'),
+(29.90, 25, 'Cucce', 'Cane', 'https://media.adeo.com/mkp/c22d609cf9a8eb9ceb512b7ecb3bb207/media.jpg?width=3000&height=3000&format=jpg&quality=80&fit=bounds',
+'Cuccia imbottita lavabile 60x50 cm', 'Cuccia Imbottita'),
+(4.50, 100, 'Igiene', 'Cane', 'https://egress.storeden.net/gallery/664d945e00f2202bdcd8c6bd',
+'Shampoo delicato all avena 250ml', 'Shampoo Delicato'),
+
+
+-- 🐱 GATTO (5 prodotti)
+(17.99, 40, 'Alimentazione', 'Gatto', 'https://m.media-amazon.com/images/I/61ehPCuhniL.jpg',
+'Crocchette al salmone 3kg', 'Crocchette Gatto Salmone 3kg'),
+(12.90, 30, 'Giochi', 'Gatto', 'https://i5-mx.walmartimages.com/mg/gm/3pp/asr/964ce6c4-5ba9-4960-a689-471d035c8c37.655048739d909b531e7ad7b4a3946eb2.jpeg',
+'Topo giocattolo con erba gatta', 'Topo Erba Gatta'),
+(24.90, 15, 'Accessori', 'Gatto', 'https://media.adeo.com/mkp/9ffca4b6c5305de23c9c38078ec0c9f0/media.jpg?width=3000&height=3000&format=jpg&quality=80&fit=bounds',
+'Tiragraffi in sisal 70cm', 'Tiragraffi Base'),
+(7.50, 50, 'Igiene', 'Gatto', 'https://partenopet.com/cdn/shop/files/Biokat_s_Bianco_Fresh_10_kg.jpg?v=1724230136&width=1946',
+'Lettiera agglomerante profumata 10kg', 'Lettiera Agglomerante'),
+(5.20, 80, 'Snack', 'Gatto', 'https://www.naturepetshop.it/wp-content/uploads/edgard_cooper_crucnchies_chicken_snack_per_gatti.jpg',
+'Snack al pollo croccanti 80g', 'Snack Pollo'),
+-- 🐦 UCCELLO (5 prodotti)
+(6.90, 80, 'Alimentazione', 'Uccello', 'https://www.legazinitaliashop.it/142-large_default/mix-semi-canarini-sindor%C3%A8-4kg.jpg',
+'Miscela semi per canarini 1kg', 'Semi Canarini'),
+(5.50, 70, 'Alimentazione', 'Uccello', 'https://m.media-amazon.com/images/I/51aL4a8uTXL._UF350,350_QL50_.jpg',
+'Pastoncino giallo per uccelli canori 500g', 'Pastoncino Giallo'),
+(14.50, 20, 'Accessori', 'Uccello', 'https://shop.hobbyuccelli.it/2046-large_default/imac-gabbia-carlotta.jpg',
+'Gabbia per piccoli uccelli 40x30cm', 'Gabbia Small'),
+(3.90, 100, 'Snack', 'Uccello', 'https://mcfido.it/wp-content/uploads/2023/07/5410340223086pack.png',
+'Bastoncini al miele per pappagallini', 'Bastoncini Miele'),
+(9.90, 30, 'Accessori', 'Uccello', 'https://m.media-amazon.com/images/I/31VAD4su4BL._SR290,290_.jpg',
+'Altalena in legno per gabbia', 'Altalena Legno'),
+-- 🐠 PESCE (5 prodotti)
+(4.99, 200, 'Alimentazione', 'Pesce', 'https://static.zoomalia.com/cdn-cgi/image/width=800,height=800/prod_img/181682/xl_333310dcbbf4cce62f762a2aaa148d556bd1749714164.jpg',
+'Fiocchi nutrienti per pesci tropicali 200g', 'Fiocchi Tropicali'),
+(12.50, 50, 'Accessori', 'Pesce', 'https://m.media-amazon.com/images/I/51FSkK+X1VL.jpg',
+'Filtro interno per acquario fino a 40L', 'Filtro Acquario 40L'),
+(39.90, 15, 'Accessori', 'Pesce', 'https://m.media-amazon.com/images/I/51amhXPAZbL.jpg',
+'Acquario in vetro 20 litri', 'Acquario 20L'),
+(6.20, 100, 'Decorazioni', 'Pesce', 'https://m.media-amazon.com/images/I/61bMvEz7yGL._UF1000,1000_QL80_.jpg',
+'Pianta artificiale per acquario 15cm', 'Pianta Acquario'),
+(8.80, 60, 'Trattamenti', 'Pesce', 'https://arcaplanet.vtexassets.com/arquivos/ids/282766/6729061f76ca58b7cea3f5684676df2f4d91dafc_3fb77b43e6af60c3066a90f87a5307eb5402cf0c.jpg?v=638155031984000000',
+'Biocondizionatore acqua dolce 250ml', 'Biocondizionatore'),
+-- 🐭 RODITORE (5 prodotti)
+(5.90, 60, 'Alimentazione', 'Roditore', 'https://bilder.obi-italia.it/241cf35d-bb06-4f21-98e9-6158670b07bf/prZZO/image.jpg',
+'Mangime completo per criceti 1kg', 'Mangime Criceti'),
+(11.90, 25, 'Accessori', 'Roditore', 'https://cdn.manomano.com/images/images_products/25757135/P/87903175_1.jpg',
+'Ruota silenziosa per criceti', 'Ruota Criceto'),
+(3.80, 90, 'Snack', 'Roditore', 'https://www.villaggionatura.com/shop/7421-large_default/bunny-biscotti-per-conigli-nani-my-little-sweetheart.jpg',
+'Biscotti alle verdure per conigli 150g', 'Biscotti Coniglio'),
+(24.50, 18, 'Accessori', 'Roditore', 'https://img.aosomcdn.com/thumbnail/100/n0/product/2025/01/23/zgl91e19495797ae4.jpg',
+'Gabbia modulare per criceti', 'Gabbia Criceto'),
+(7.40, 70, 'Lettiera', 'Roditore', 'https://www.hamiform.com/sites/uploads/2021/12/365-LITIERE-MA%C3%8FS-10L.jpg',
+'Lettiera di mais naturale 10L', 'Lettiera Mais'),
+-- 🦎 RETTILE (5 prodotti)
+(9.50, 40, 'Alimentazione', 'Rettile', 'https://m.media-amazon.com/images/I/71G9AKZyzAL._UF894,1000_QL80_.jpg',
+'Insetti essiccati per gechi 250g', 'Insetti Geco'),
+(19.90, 20, 'Accessori', 'Rettile', 'https://m.media-amazon.com/images/I/71wkyoQBB+L._UF350,350_QL80_.jpg',
+'Tappetino riscaldante per terrario 20W', 'Tappetino Riscaldante'),
+(49.90, 10, 'Accessori', 'Rettile', 'https://m.media-amazon.com/images/I/81ANsFuzyiL.jpg',
+'Terrario in vetro 60x40x40 cm', 'Terrario Base'),
+(15.60, 25, 'Decorazioni', 'Rettile', 'https://m.media-amazon.com/images/I/517K0cjqHjL._UF894,1000_QL80_.jpg',
+'Set rocce decorative per terrario', 'Rocce Decorative'),
+(6.80, 50, 'Integratori', 'Rettile', 'https://m.media-amazon.com/images/I/61O0DJAthEL.jpg',
+'Calcio in polvere per rettili 100g', 'Calcio Polvere');
+

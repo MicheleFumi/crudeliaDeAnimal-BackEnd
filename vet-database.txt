@@ -1,0 +1,93 @@
+INSERT INTO `veterinario-ospedali`
+(telefono, cap, email, indirizzo, nome, orari_apertura, provincia, regione, servizi_offerti, strutture_sanitarie)
+VALUES
+-- 🏔️ Valle d'Aosta
+('0165 333333','11020','courmayeur.osp@vet.it','Via Monte Bianco 8','Ospedale Veterinario Courmayeur','H24','AO','Valle d\'Aosta','DERMATOLOGIA','OSPEDALE'),
+('0165 444444','11020','saintvincent.cli@vet.it','Via Chanoux 15','Clinica Veterinaria Saint Vincent','Lun-Sab 08:00-20:00','AO','Valle d\'Aosta','VISITE_GENERALI','CLINICA'),
+('0165 111111','11100','aosta.osp@vet.it','Via Roma 10','Ospedale Veterinario Aosta','H24','AO','Valle d\'Aosta','PRONTO_SOCCORSO','OSPEDALE'),
+('0165 222222','11100','aosta.cli@vet.it','Piazza Chanoux 5','Clinica Veterinaria Chanoux','Lun-Sab 08:00-20:00','AO','Valle d\'Aosta','VACCINAZIONI','CLINICA'),
+-- 🏞️ Piemonte
+('0131 223344','15121','alessandria.osp@vet.it','Corso Roma 30','Ospedale Veterinario Alessandria','H24','AL','Piemonte','DAY_HOSPITAL','OSPEDALE'),
+('0171 998877','12100','cuneo.cli@vet.it','Via Torino 21','Clinica Veterinaria Cuneo','Lun-Sab 09:00-19:00','CN','Piemonte','CHIRURGIA','CLINICA'),
+('011 1234567','10121','torino.osp@vet.it','Corso Francia 88','Ospedale Veterinario Torino','H24','TO','Piemonte','CHIRURGIA','OSPEDALE'),
+('011 7654321','10122','torino.cli@vet.it','Via Garibaldi 50','Clinica Veterinaria Garibaldi','Lun-Sab 09:00-19:00','TO','Piemonte','DERMATOLOGIA','CLINICA'),
+-- 🌊 Liguria
+('0187 667788','19121','la_spezia.osp@vet.it','Via Prione 12','Ospedale Veterinario La Spezia','H24','SP','Liguria','ANALISI_DEL_SANGUE','OSPEDALE'),
+('019 445577','17100','savona.cli@vet.it','Corso Italia 18','Clinica Veterinaria Savona','Lun-Sab 08:30-20:30','SV','Liguria','VACCINAZIONI','CLINICA'),
+('010 1122334','16121','genova.osp@vet.it','Via Balbi 12','Ospedale Veterinario Genova','H24','GE','Liguria','ONCOLOGIA','OSPEDALE'),
+('010 4433221','16122','genova.cli@vet.it','Piazza De Ferrari 9','Clinica Veterinaria De Ferrari','Lun-Sab 08:30-20:30','GE','Liguria','ODONTOIATRIA','CLINICA'),
+-- 🏞️ Lombardia
+('0332 998811','21100','varese.osp@vet.it','Piazza Monte Grappa 2','Ospedale Veterinario Varese','H24','VA','Lombardia','ONCOLOGIA','OSPEDALE'),
+('030 112299','25121','brescia.cli@vet.it','Via San Faustino 40','Clinica Veterinaria Brescia','Lun-Sab 09:00-19:00','BS','Lombardia','OFTALMOLOGIA','CLINICA'),
+('02 7788990','20122','milano.osp@vet.it','Viale Monza 100','Ospedale Veterinario Milano','H24','MI','Lombardia','PRONTO_SOCCORSO','OSPEDALE'),
+('02 6677889','20123','milano.cli@vet.it','Corso Buenos Aires 60','Clinica Veterinaria Buenos Aires','Lun-Sab 09:00-19:00','MI','Lombardia','ANALISI_DEL_SANGUE','CLINICA'),
+-- 🌊 Veneto
+('045 223355','37121','verona.osp@vet.it','Corso Porta Nuova 20','Ospedale Veterinario Verona','H24','VR','Veneto','PRONTO_SOCCORSO','OSPEDALE'),
+('0422 556677','31100','treviso.cli@vet.it','Via Roma 7','Clinica Veterinaria Treviso','Lun-Sab 08:00-20:00','TV','Veneto','DERMATOLOGIA','CLINICA'),
+('041 5556667','30124','venezia.osp@vet.it','Calle Lunga 8','Ospedale Veterinario Laguna','H24','VE','Veneto','RADIOGRAFIE','OSPEDALE'),
+('049 4455667','35122','padova.cli@vet.it','Prato della Valle 3','Clinica Veterinaria Prato','Lun-Sab 08:00-20:00','PD','Veneto','VISITE_GENERALI','CLINICA'),
+-- 🌄 Trentino-Alto Adige
+('0474 334455','39031','brunico.osp@vet.it','Via Centrale 11','Ospedale Veterinario Brunico','H24','BZ','Trentino-Alto Adige','CHIRURGIA','OSPEDALE'),
+('0464 223344','38066','riva.cli@vet.it','Piazza Catena 5','Clinica Veterinaria Riva del Garda','Lun-Sab 09:00-18:00','TN','Trentino-Alto Adige','ODONTOIATRIA','CLINICA'),
+('0461 334455','38122','trento.osp@vet.it','Via Brennero 12','Ospedale Veterinario Trento','H24','TN','Trentino-Alto Adige','CHIRURGIA','OSPEDALE'),
+('0471 998877','39100','bolzano.cli@vet.it','Via Goethe 15','Clinica Veterinaria Goethe','Lun-Sab 09:00-18:00','BZ','Trentino-Alto Adige','OFTALMOLOGIA','CLINICA'),
+-- 🏔️ Friuli Venezia Giulia
+('0434 667788','33170','pordenone.osp@vet.it','Via Oberdan 12','Ospedale Veterinario Pordenone','H24','PN','Friuli Venezia Giulia','RADIOGRAFIE','OSPEDALE'),
+('0427 334455','33097','spilimbergo.cli@vet.it','Via Manin 9','Clinica Veterinaria Spilimbergo','Lun-Sab 08:30-20:30','PN','Friuli Venezia Giulia','VISITE_GENERALI','CLINICA'),
+('040 221133','34121','trieste.osp@vet.it','Via Carducci 18','Ospedale Veterinario Trieste','H24','TS','Friuli Venezia Giulia','DAY_HOSPITAL','OSPEDALE'),
+('0432 778899','33100','udine.cli@vet.it','Piazza Libertà 22','Clinica Veterinaria Friuli','Lun-Sab 08:30-20:30','UD','Friuli Venezia Giulia','VACCINAZIONI','CLINICA'),
+-- 🌳 Emilia-Romagna
+('0541 778899','47921','rimini.osp@vet.it','Viale Vespucci 22','Ospedale Veterinario Rimini','H24','RN','Emilia-Romagna','PRONTO_SOCCORSO','OSPEDALE'),
+('0532 443355','44121','ferrara.cli@vet.it','Corso Ercole I d\'Este 15','Clinica Veterinaria Ferrara','Lun-Sab 09:00-19:00','FE','Emilia-Romagna','ONCOLOGIA','CLINICA'),
+('051 332211','40122','bologna.osp@vet.it','Via Indipendenza 70','Ospedale Veterinario Bologna','H24','BO','Emilia-Romagna','ONCOLOGIA','OSPEDALE'),
+('0521 443355','43121','parma.cli@vet.it','Via Farini 44','Clinica Veterinaria Farini','Lun-Sab 09:00-19:00','PR','Emilia-Romagna','DERMATOLOGIA','CLINICA'),
+-- 🌞 Toscana
+('0577 667788','53100','siena.osp@vet.it','Piazza del Campo 6','Ospedale Veterinario Siena','H24','SI','Toscana','DAY_HOSPITAL','OSPEDALE'),
+('0564 223344','58100','grosseto.cli@vet.it','Corso Carducci 19','Clinica Veterinaria Grosseto','Lun-Sab 08:00-20:00','GR','Toscana','ANALISI_DEL_SANGUE','CLINICA'),
+('055 667788','50122','firenze.osp@vet.it','Piazza Duomo 3','Ospedale Veterinario Firenze','H24','FI','Toscana','RADIOGRAFIE','OSPEDALE'),
+('0586 223344','57123','livorno.cli@vet.it','Via Grande 20','Clinica Veterinaria Livorno','Lun-Sab 08:00-20:00','LI','Toscana','VISITE_GENERALI','CLINICA'),
+-- 🏛️ Umbria
+('0742 778899','06034','foligno.osp@vet.it','Via Umberto I 4','Ospedale Veterinario Foligno','H24','PG','Umbria','OFTALMOLOGIA','OSPEDALE'),
+('0742 334455','06049','spoleto.cli@vet.it','Piazza Garibaldi 8','Clinica Veterinaria Spoleto','Lun-Sab 08:30-19:30','PG','Umbria','DERMATOLOGIA','CLINICA'),
+('075 778899','06121','perugia.osp@vet.it','Corso Vannucci 6','Ospedale Veterinario Perugia','H24','PG','Umbria','PRONTO_SOCCORSO','OSPEDALE'),
+('0744 112233','05100','terni.cli@vet.it','Via Cavour 11','Clinica Veterinaria Cavour','Lun-Sab 08:30-19:30','TR','Umbria','CHIRURGIA','CLINICA'),
+-- 🏺 Marche
+('0733 556677','62100','macerata.osp@vet.it','Via Don Minzoni 13','Ospedale Veterinario Macerata','H24','MC','Marche','RADIOGRAFIE','OSPEDALE'),
+('0736 223344','63100','ascoli.cli@vet.it','Corso Vittorio Emanuele 9','Clinica Veterinaria Ascoli','Lun-Sab 09:00-19:00','AP','Marche','CHIRURGIA','CLINICA'),
+('071 443322','60121','ancona.osp@vet.it','Piazza Cavour 10','Ospedale Veterinario Ancona','H24','AN','Marche','DAY_HOSPITAL','OSPEDALE'),
+('0721 556677','61121','pesaro.cli@vet.it','Via Rossini 14','Clinica Veterinaria Rossini','Lun-Sab 09:00-19:00','PU','Marche','VACCINAZIONI','CLINICA'),
+-- 🏖️ Lazio
+('0761 778899','01100','viterbo.osp@vet.it','Via San Lorenzo 18','Ospedale Veterinario Viterbo','H24','VT','Lazio','VISITE_GENERALI','OSPEDALE'),
+('0776 223344','03043','cassino.cli@vet.it','Piazza Diamare 7','Clinica Veterinaria Cassino','Lun-Sab 08:00-20:00','FR','Lazio','ONCOLOGIA','CLINICA'),
+('06 778899','00184','roma.osp@vet.it','Via Appia 150','Ospedale Veterinario Roma','H24','RM','Lazio','PRONTO_SOCCORSO','OSPEDALE'),
+('0773 223344','04100','latina.cli@vet.it','Corso della Repubblica 45','Clinica Veterinaria Latina','Lun-Sab 08:00-20:00','LT','Lazio','ODONTOIATRIA','CLINICA'),
+-- 🌋 Campania
+('0825 445566','83100','avellino.osp@vet.it','Corso Vittorio Emanuele 16','Ospedale Veterinario Avellino','H24','AV','Campania','ANALISI_DEL_SANGUE','OSPEDALE'),
+('089 556677','84121','salerno.cli@vet.it','Via Roma 50','Clinica Veterinaria Salerno','Lun-Sab 08:30-20:30','SA','Campania','DAY_HOSPITAL','CLINICA'),
+('081 445566','80142','napoli.osp@vet.it','Via Toledo 25','Ospedale Veterinario Napoli','H24','NA','Campania','RADIOGRAFIE','OSPEDALE'),
+('0824 778899','82100','benevento.cli@vet.it','Corso Garibaldi 12','Clinica Veterinaria Benevento','Lun-Sab 08:30-20:30','BN','Campania','OFTALMOLOGIA','CLINICA'),
+-- 🌊 Puglia
+('0881 223344','71121','foggia.osp@vet.it','Corso Garibaldi 8','Ospedale Veterinario Foggia','H24','FG','Puglia','DERMATOLOGIA','OSPEDALE'),
+('099 667788','74121','taranto.cli@vet.it','Via Duca degli Abruzzi 20','Clinica Veterinaria Taranto','Lun-Sab 09:00-19:00','TA','Puglia','ODONTOIATRIA','CLINICA'),
+('080 443322','70121','bari.osp@vet.it','Via Sparano 50','Ospedale Veterinario Bari','H24','BA','Puglia','ONCOLOGIA','OSPEDALE'),
+('0832 112233','73100','lecce.cli@vet.it','Via Libertini 17','Clinica Veterinaria Salento','Lun-Sab 09:00-19:00','LE','Puglia','VISITE_GENERALI','CLINICA'),
+-- 🌄 Basilicata
+('0973 334455','85059','lagonegro.osp@vet.it','Via Nazionale 17','Ospedale Veterinario Lagonegro','H24','PZ','Basilicata','PRONTO_SOCCORSO','OSPEDALE'),
+('0971 112233','85025','melfi.cli@vet.it','Corso Garibaldi 10','Clinica Veterinaria Melfi','Lun-Sab 08:30-20:00','PZ','Basilicata','RADIOGRAFIE','CLINICA'),
+('0971 556677','85100','potenza.osp@vet.it','Via Pretoria 4','Ospedale Veterinario Potenza','H24','PZ','Basilicata','CHIRURGIA','OSPEDALE'),
+('0835 998877','75100','matera.cli@vet.it','Via Ridola 20','Clinica Veterinaria Matera','Lun-Sab 08:30-20:00','MT','Basilicata','DERMATOLOGIA','CLINICA'),
+-- 🌴 Calabria
+('0961 445566','88100','catanzaro.osp@vet.it','Via Buccarelli 23','Ospedale Veterinario Catanzaro','H24','CZ','Calabria','CHIRURGIA','OSPEDALE'),
+('0983 778899','87012','corigliano.cli@vet.it','Piazza Salotto 5','Clinica Veterinaria Corigliano','Lun-Sab 09:00-19:00','CS','Calabria','VISITE_GENERALI','CLINICA'),
+('0984 223344','87100','cosenza.osp@vet.it','Via Panebianco 33','Ospedale Veterinario Cosenza','H24','CS','Calabria','PRONTO_SOCCORSO','OSPEDALE'),
+('0965 556677','89100','reggio.cli@vet.it','Corso Garibaldi 60','Clinica Veterinaria Reggio','Lun-Sab 09:00-19:00','RC','Calabria','ANALISI_DEL_SANGUE','CLINICA'),
+-- 🏝️ Sicilia
+('0923 223344','91100','trapani.osp@vet.it','Via Fardella 44','Ospedale Veterinario Trapani','H24','TP','Sicilia','ONCOLOGIA','OSPEDALE'),
+('0935 667788','94100','enna.cli@vet.it','Via Roma 30','Clinica Veterinaria Enna','Lun-Sab 08:00-20:00','EN','Sicilia','VACCINAZIONI','CLINICA'),
+('091 334455','90133','palermo.osp@vet.it','Via Libertà 70','Ospedale Veterinario Palermo','H24','PA','Sicilia','DAY_HOSPITAL','OSPEDALE'),
+('095 667788','95121','catania.cli@vet.it','Corso Italia 10','Clinica Veterinaria Etnea','Lun-Sab 08:00-20:00','CT','Sicilia','VACCINAZIONI','CLINICA'),
+-- 🏝️ Sardegna
+('0789 334455','07026','olbia.osp@vet.it','Via Redipuglia 9','Ospedale Veterinario Olbia','H24','SS','Sardegna','OFTALMOLOGIA','OSPEDALE'),
+('0783 112233','09170','oristano.cli@vet.it','Corso Umberto 12','Clinica Veterinaria Oristano','Lun-Sab 09:00-19:00','OR','Sardegna','ANALISI_DEL_SANGUE','CLINICA'),
+('070 223344','09128','cagliari.osp@vet.it','Via San Benedetto 18','Ospedale Veterinario Cagliari','H24','CA','Sardegna','ONCOLOGIA','OSPEDALE'),
+('079 445566','07100','sassari.cli@vet.it','Via Roma 19','Clinica Veterinaria Sassari','Lun-Sab 09:00-19:00','SS','Sardegna','ODONTOIATRIA','CLINICA');

@@ -1,0 +1,22 @@
+INSERT INTO utente (
+    id,
+    codice_fiscale,
+    data_registrazione,
+    cognome,
+    email,
+    indirizzo,
+    nome,
+    password,
+    telefono,
+    role
+) VALUES
+(NULL, 'RSSMRA85T10A562S', '2025-09-01', 'Rossi', 'mario.rossi@example.com', 'Via Roma 1, Milano', 'Mario', 'hashedpassword1', '3311234567', 'ADMIN'),
+(NULL, 'BNCGPP90A01H501Z', '2025-09-05', 'Bianchi', 'giuseppe.bianchi@example.com', 'Via Milano 22, Roma', 'Giuseppe', 'hashedpassword2', '3387654321', 'USER'),
+(NULL, 'VRDLGI75A41F205Z', '2025-09-10', 'Verdi', 'luigi.verdi@asl.it', 'Via Verdi 10, Napoli', 'Luigi', 'hashedpassword3', '3451122334', 'MEDICO'),
+(NULL, 'FRNLNZ88C10L219U', '2025-09-12', 'Ferrari', 'luca.ferrari@example.com', 'Via Torino 45, Torino', 'Luca', 'hashedpassword4', '3209988776', 'USER'),
+(NULL, 'MRTGPP91B15C351H', '2025-09-13', 'Martini', 'giulia.martini@example.com', 'Via Firenze 3, Firenze', 'Giulia', 'hashedpassword5', '3274455667', 'MEDICO'),
+(NULL, 'BLNCNL93E22H501K', '2025-09-14', 'Bellanova', 'carla.bellanova@example.com', 'Viale Venezia 12, Venezia', 'Carla', 'hashedpassword6', '3495566778', 'USER'),
+(NULL, 'NGRFNC86D44L736T', '2025-09-15', 'Neri', 'francesco.neri@example.com', 'Via Bologna 5, Bologna', 'Francesco', 'hashedpassword7', '3667788990', 'ADMIN'),
+(NULL, 'TRNSMN90H01F205P', '2025-09-16', 'Tornesi', 'simona.tornesi@example.com', 'Via Bari 23, Bari', 'Simona', 'hashedpassword8', '3688899001', 'MEDICO'),
+(NULL, 'CRSLNZ82C51G273A', '2025-09-17', 'Corsini', 'enzo.corsini@example.com', 'Via Genova 9, Genova', 'Enzo', 'hashedpassword9', '3391122334', 'USER'),
+(NULL, 'VLTRGN79M16A562D', '2025-09-17', 'Volturno', 'gianni.volturno@example.com', 'Via Lecce 6, Lecce', 'Gianni', 'hashedpassword10', '3456677889', 'ADMIN');

@@ -1,0 +1,43 @@
+INSERT INTO animale (id, id_utente, nome_animale, razza, tipo, note_mediche)
+VALUES
+-- UCCELLI
+(1, 1, 'Cip', 'Canarino', 'uccello', 'Controllo annuale effettuato'),
+(2, 2, 'Sky', 'Pappagallo', 'uccello', 'Necessita di vitamine'),
+(3, 3, 'Luna', 'Cocorita', 'uccello', 'Becco da monitorare'),
+(4, 4, 'Kiko', 'Inseparabile', 'uccello', 'Vaccino richiesto'),
+(5, 5, 'Piuma', 'Calopsitta', 'uccello', 'In salute'),
+
+-- CANI
+(6, 6, 'Fido', 'Labrador', 'cane', 'Allergia al pollo'),
+(7, 7, 'Rex', 'Pastore Tedesco', 'cane', 'Displasia alle anche'),
+(8, 8, 'Lola', 'Barboncino', 'cane', 'Vaccinazioni complete'),
+(9, 9, 'Rocky', 'Bulldog', 'cane', 'Problemi respiratori'),
+(10, 10, 'Zoe', 'Beagle', 'cane', 'Visita programmata'),
+
+-- GATTI
+(11, 1, 'Micio', 'Europeo', 'gatto', 'Sterilizzato'),
+(12, 2, 'Oreo', 'Siamese', 'gatto', 'Dieta speciale'),
+(13, 3, 'Leo', 'Maine Coon', 'gatto', 'Controllo denti'),
+(14, 4, 'Nina', 'Persiano', 'gatto', 'In salute'),
+(15, 5, 'Maya', 'Bengala', 'gatto', 'Allergia da monitorare'),
+
+-- PESCI
+(16, 6, 'Nemo', 'Pesce Pagliaccio', 'pesce', 'Acquario pulito'),
+(17, 7, 'Dory', 'Chirurgo Blu', 'pesce', 'Controllo branchie'),
+(18, 8, 'Goldie', 'Pesce Rosso', 'pesce', 'Dieta bilanciata'),
+(19, 9, 'Splash', 'Betta', 'pesce', 'Cambio acqua settimanale'),
+(20, 10, 'Finny', 'Guppy', 'pesce', 'In salute'),
+
+-- RODITORI
+(21, 1, 'Speedy', 'Criceto', 'roditore', 'Ruota consigliata'),
+(22, 2, 'Pippo', 'Cavia Peruviana', 'roditore', 'Denti da limare'),
+(23, 3, 'Nibbles', 'Gerbillo', 'roditore', 'Attivo e sano'),
+(24, 4, 'Whiskers', 'Ratto Domestico', 'roditore', 'Molto socievole'),
+(25, 5, 'Cheese', 'Topo', 'roditore', 'Controllo zampette'),
+
+-- RETTILI
+(26, 6, 'Spike', 'Iguana', 'rettile', 'Lampada UV necessaria'),
+(27, 7, 'Leo', 'Geco Leopardino', 'rettile', 'Muta regolare'),
+(28, 8, 'Shelly', 'Tartaruga', 'rettile', 'Dieta a base di verdure'),
+(29, 9, 'Nagini', 'Pitone', 'rettile', 'Terrario riscaldato'),
+(30, 10, 'Rango', 'Camaleonte', 'rettile', 'Cambio fogliame frequente');
