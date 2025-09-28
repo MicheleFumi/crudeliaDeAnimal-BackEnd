@@ -2,6 +2,7 @@ package com.betacom.crudeliaDeAnimal.controller;
 
 import com.betacom.crudeliaDeAnimal.dto.PrenotazioneDTO;
 import com.betacom.crudeliaDeAnimal.dto.ProdottoDTO;
+import com.betacom.crudeliaDeAnimal.exception.CrudeliaException;
 import com.betacom.crudeliaDeAnimal.requests.PrenotazioneReq;
 import com.betacom.crudeliaDeAnimal.requests.ProdottoReq;
 import com.betacom.crudeliaDeAnimal.response.ResponseBase;
@@ -49,6 +50,18 @@ public class PrenotazioneController {
         }
         return r;
     }
+  @GetMapping("/findByIdUtente")
+  public ResponseList<PrenotazioneDTO> findByIdUtente(@RequestParam(required = true) Integer id) {
+    ResponseList<PrenotazioneDTO> r = new ResponseList<PrenotazioneDTO>();
+    try {
+      r.setRc(true);
+      r.setDati(IPreS.findByIdUtente(id));
+    }catch (Exception e){
+      r.setMsg(e.getMessage());
+      r.setRc(false);
+    }
+    return r;
+  }
 
     @PostMapping("/create")
     public ResponseBase create(@RequestBody(required = true) PrenotazioneReq req) {
@@ -56,7 +69,7 @@ public class PrenotazioneController {
         try {
             r.setRc(true);
             IPreS.create(req);
-        }catch (Exception e){
+        }catch (CrudeliaException e){
             r.setMsg(e.getMessage());
             r.setRc(false);
         }
@@ -67,11 +80,11 @@ public class PrenotazioneController {
 
     public ResponseBase delete(@RequestBody(required = true) PrenotazioneReq req) {
         ResponseBase r = new ResponseBase();
-
+        log.debug("test dal controller" + req);
         try {
             r.setRc(true);
-            PrenotazioneDTO p = IPreS.delete(req);
-        }catch (Exception e){
+            IPreS.delete(req);
+        }catch (CrudeliaException e){
             r.setMsg(e.getMessage());
             r.setRc(false);
         }

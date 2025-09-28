@@ -1,5 +1,6 @@
 package com.betacom.crudeliaDeAnimal.repositories;
 
+import com.betacom.crudeliaDeAnimal.dto.PrenotazioneDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.betacom.crudeliaDeAnimal.models.Prenotazione;
@@ -22,5 +23,5 @@ public interface IPrenotazioneRepository extends JpaRepository<Prenotazione, Int
             @Param("data") LocalDate data
     );
 
-
+  List<Prenotazione> findByUtente_Id(Integer idUtente);
 }

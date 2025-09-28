@@ -18,6 +18,8 @@ import com.betacom.crudeliaDeAnimal.requests.PrenotazioneReq;
 import com.betacom.crudeliaDeAnimal.services.interfaces.IMessaggioServices;
 import com.betacom.crudeliaDeAnimal.services.interfaces.IPrenotazioneServices;
 import com.betacom.crudeliaDeAnimal.utils.StatoVisita;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +29,8 @@ import java.util.stream.Collectors;
 @Service
 public class PrenotazioneImpl implements IPrenotazioneServices {
 
-    public IPrenotazioneRepository IPreR;
+  private static final Logger log = LogManager.getLogger(PrenotazioneImpl.class);
+  public IPrenotazioneRepository IPreR;
     public IAnimaleRepository IaniR;
     public IUtenteRepository IUteR;
     public IVeterinarioRepository IVetR;
@@ -157,50 +160,14 @@ public class PrenotazioneImpl implements IPrenotazioneServices {
     }
 
     @Override
-    public PrenotazioneDTO delete(PrenotazioneReq req) throws CrudeliaException {
+    public void delete(PrenotazioneReq req) throws CrudeliaException {
+      log.debug(req);
         Optional<Prenotazione> pr= IPreR.findById(req.getId());
         if(pr.isEmpty())
    			throw new CrudeliaException(msgS.getMessaggio("VISIT_NOT_FOUND"));
-        return PrenotazioneDTO.builder()
-            .id(pr.get().getId())
-            .dataVisita(pr.get().getDataVisita())
-            .oraVisita(pr.get().getOraVisita())
-            .motivoVisita(pr.get().getMotivoVisita())
-            .statoVisita(pr.get().getStatoVisita())
-            .tipoPagamento(pr.get().getTipoPagamento())
-            .utente(UtenteDTO.builder()
-                    .id(pr.get().getUtente().getId())
-                    .cognome(pr.get().getUtente().getCognome())
-                    .nome(pr.get().getUtente().getNome())
-                    .codiceFiscale(pr.get().getUtente().getCodiceFiscale())
-                    .telefono(pr.get().getUtente().getTelefono())
-                    .email(pr.get().getUtente().getEmail())
-                    .indirizzo(pr.get().getUtente().getIndirizzo())
-                    .password(pr.get().getUtente().getPassword())
-                    .dataRegistrazione(pr.get().getUtente().getDataRegistrazione())
-                    .role(pr.get().getUtente().getRole())
-                    .build()
-            )
-            .animale(AnimaleDTO.builder()
-                    .id(pr.get().getAnimale().getId())
-                    .nomeAnimale(pr.get().getAnimale().getNomeAnimale())
-                    .tipo(pr.get().getAnimale().getTipo())
-                    .razza(pr.get().getAnimale().getRazza())
-                    .noteMediche(pr.get().getAnimale().getNoteMediche())
-                    .build()
-            )
-            .veterinario(VeterinarioDTO.builder()
-                    .id(pr.get().getVeterinario().getId())
-                    .nome(pr.get().getVeterinario().getNome())
-                    .tipostruttura(pr.get().getVeterinario().getTipostrutture())
-                    .indirizzo(pr.get().getVeterinario().getIndirizzo())
-                    .telefono(pr.get().getVeterinario().getTelefono())
-                    .email(pr.get().getVeterinario().getEmail())
-                    .orariApertura(pr.get().getVeterinario().getOrariApertura())
-                    .serviziVO(pr.get().getVeterinario().getServiziVO())
-                    .build())
-            .build()
-            ;
+
+        IPreR.delete(pr.get());
+
     }
     @Override
     public PrenotazioneDTO findById(Integer id) throws CrudeliaException {
@@ -249,4 +216,49 @@ public class PrenotazioneImpl implements IPrenotazioneServices {
                 .build()
                 ;
     }
+
+  @Override
+  public List<PrenotazioneDTO> findByIdUtente(Integer id) throws CrudeliaException {
+    List<Prenotazione> p =IPreR.findByUtente_Id(id);
+    return p.stream().map(pr->
+      PrenotazioneDTO.builder()
+        .id(pr.getId())
+        .dataVisita(pr.getDataVisita())
+        .oraVisita(pr.getOraVisita())
+        .motivoVisita(pr.getMotivoVisita())
+        .statoVisita(pr.getStatoVisita())
+        .tipoPagamento(pr.getTipoPagamento())
+        .utente(UtenteDTO.builder()
+          .id(pr.getUtente().getId())
+          .cognome(pr.getUtente().getCognome())
+          .nome(pr.getUtente().getNome())
+          .codiceFiscale(pr.getUtente().getCodiceFiscale())
+          .telefono(pr.getUtente().getTelefono())
+          .email(pr.getUtente().getEmail())
+          .indirizzo(pr.getUtente().getIndirizzo())
+          .password(pr.getUtente().getPassword())
+          .dataRegistrazione(pr.getUtente().getDataRegistrazione())
+          .role(pr.getUtente().getRole())
+          .build()
+        )
+        .animale(AnimaleDTO.builder()
+          .id(pr.getAnimale().getId())
+          .nomeAnimale(pr.getAnimale().getNomeAnimale())
+          .tipo(pr.getAnimale().getTipo())
+          .razza(pr.getAnimale().getRazza())
+          .noteMediche(pr.getAnimale().getNoteMediche())
+          .build()
+        )
+        .veterinario(VeterinarioDTO.builder()
+          .id(pr.getVeterinario().getId())
+          .nome(pr.getVeterinario().getNome())
+          .tipostruttura(pr.getVeterinario().getTipostrutture())
+          .indirizzo(pr.getVeterinario().getIndirizzo())
+          .telefono(pr.getVeterinario().getTelefono())
+          .email(pr.getVeterinario().getEmail())
+          .orariApertura(pr.getVeterinario().getOrariApertura())
+          .serviziVO(pr.getVeterinario().getServiziVO())
+          .build())
+        .build()).toList();
+  }
 }
