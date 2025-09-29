@@ -12,12 +12,15 @@ import com.betacom.crudeliaDeAnimal.services.interfaces.IOrdineServices;
 import com.betacom.crudeliaDeAnimal.services.interfaces.IProdottoServices;
 
 import lombok.extern.log4j.Log4j2;
+
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @Log4j2
 @RestController
-@RequestMapping("rest/ordine")
+@RequestMapping("/rest/ordine")
 public class OrdineController {
 
     public IOrdineServices IOrS;
@@ -40,6 +43,18 @@ public class OrdineController {
         return r;
     }
     
+    @GetMapping("/findByUser")
+    public ResponseObject<List<OrdineDTO>> findByUser(@RequestParam Integer idUtente) {
+        ResponseObject<List<OrdineDTO>> r = new ResponseObject<>();
+        try {
+            r.setRc(true);
+            r.setDati(IOrS.findByUser(idUtente));
+        } catch (Exception e) {
+            r.setRc(false);
+            r.setMsg(e.getMessage());
+        }
+        return r;
+    }
 
     @GetMapping("/findById")
     public ResponseObject<OrdineDTO> findById(@RequestParam(required = true) Integer id) {
@@ -69,7 +84,7 @@ public class OrdineController {
         return r;
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/deleteOrdine")
 
     public ResponseBase delete(@RequestBody(required = true) OrdineReq req) {
         ResponseBase r = new ResponseBase();
