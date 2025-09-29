@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.betacom.crudeliaDeAnimal.dto.CarrelloDTO;
+import com.betacom.crudeliaDeAnimal.dto.CarrelloProdottoDTO;
+import com.betacom.crudeliaDeAnimal.dto.CarrelloRespDTO;
 import com.betacom.crudeliaDeAnimal.exception.CrudeliaException;
 import com.betacom.crudeliaDeAnimal.response.ResponseBase;
 import com.betacom.crudeliaDeAnimal.response.ResponseObject;
@@ -29,17 +31,22 @@ public class CarrelloController {
 		this.carrelloSer = carrelloSer;
 	 }
 	 
-	 @GetMapping("/get")
-	    public ResponseObject<CarrelloDTO> getCarrello(@RequestParam Integer idUtente) {
-	        ResponseObject<CarrelloDTO> r = new ResponseObject<>();
+	 @GetMapping("/getCarrello")
+	    public ResponseObject<CarrelloRespDTO> getCarrello(@RequestParam Integer idUtente) {
+		 
+	        ResponseObject<CarrelloRespDTO> resp = new ResponseObject<CarrelloRespDTO>();
+		 
 	        try {
-	            r.setRc(true);
-	            r.setDati(carrelloSer.getCarrelloByUtente(idUtente , true));
+	        	resp.setRc(true);
+	            resp.setDati(carrelloSer.getCarrelloByUtente(idUtente , true));
+	            resp.setMsg("Carrello gia creato con successo!");
 	        } catch (CrudeliaException e) {
-	            r.setRc(false);
-	            r.setMsg(e.getMessage());
+	        	log.debug("get carrello errore "+ e.getMessage());
+	        	resp.setRc(false);
+	            resp.setMsg(e.getMessage());
+	            
 	        }
-	        return r;
+	        return resp;
 	    }
 	 
 	
@@ -57,4 +64,13 @@ public class CarrelloController {
 	        }
 	        return r;
 	    }
+	 
+		/*
+		 * @GetMapping("/get") public ResponseObject<CarrelloDTO>
+		 * getCarrello(@RequestParam Integer idUtente) { ResponseObject<CarrelloDTO> r =
+		 * new ResponseObject<>(); try { r.setRc(true);
+		 * r.setDati(carrelloSer.getCarrelloByUtente(idUtente , true)); } catch
+		 * (CrudeliaException e) { r.setRc(false); r.setMsg(e.getMessage()); } return r;
+		 * }
+		 */
 }

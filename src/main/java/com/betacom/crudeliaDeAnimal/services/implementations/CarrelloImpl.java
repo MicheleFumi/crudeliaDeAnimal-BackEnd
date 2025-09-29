@@ -9,16 +9,22 @@ import org.springframework.stereotype.Service;
 
 import com.betacom.crudeliaDeAnimal.dto.CarrelloDTO;
 import com.betacom.crudeliaDeAnimal.dto.CarrelloProdottoDTO;
+import com.betacom.crudeliaDeAnimal.dto.CarrelloRespDTO;
+import com.betacom.crudeliaDeAnimal.dto.OrdineProdottoDTO;
 import com.betacom.crudeliaDeAnimal.dto.ProdottoDTO;
 import com.betacom.crudeliaDeAnimal.exception.CrudeliaException;
 import com.betacom.crudeliaDeAnimal.models.Carrello;
+import com.betacom.crudeliaDeAnimal.models.Ordine;
+import com.betacom.crudeliaDeAnimal.models.OrdineProdotto;
 import com.betacom.crudeliaDeAnimal.models.Utente;
 import com.betacom.crudeliaDeAnimal.repositories.ICarrelloProdottoRepository;
 import com.betacom.crudeliaDeAnimal.repositories.ICarrelloRepository;
+import com.betacom.crudeliaDeAnimal.repositories.IOrdineRepository;
 import com.betacom.crudeliaDeAnimal.repositories.IUtenteRepository;
 import com.betacom.crudeliaDeAnimal.services.interfaces.ICarrelloServices;
 import com.betacom.crudeliaDeAnimal.services.interfaces.IMessaggioServices;
 import com.betacom.crudeliaDeAnimal.utils.StatoOrdine;
+import java.math.BigDecimal;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +36,7 @@ public class CarrelloImpl implements ICarrelloServices {
 	private ICarrelloRepository carrelloRepo;
 	private ICarrelloProdottoRepository carrelloProRepo;
 	private IUtenteRepository utenteRepo;
+	private IOrdineRepository ordRepo;
 	
 
 	private IMessaggioServices msgS;
@@ -45,9 +52,9 @@ public class CarrelloImpl implements ICarrelloServices {
 		this.msgS = msgS;
 	
 	}
-
+	
 	@Override
-	public CarrelloDTO getCarrelloByUtente(Integer idUtente, boolean createIfMissing) throws CrudeliaException {
+	public CarrelloRespDTO getCarrelloByUtente(Integer idUtente, boolean createIfMissing) throws CrudeliaException {
 
 		Utente utente = utenteRepo.findById(idUtente)
 				.orElseThrow(() -> new CrudeliaException(msgS.getMessaggio("USER_NOT_FOUND")));
@@ -72,31 +79,61 @@ public class CarrelloImpl implements ICarrelloServices {
 			}
 		}
 
-		return toCarrelloDTO(carrello);
+		return toCarrelloRespDTO(carrello);
 	}
 
-	@Override
-	public void emptyCarrello(Integer idUtente) throws CrudeliaException {
+	/*
+	 * @Override public CarrelloDTO getCarrelloByUtente(Integer idUtente, boolean
+	 * createIfMissing) throws CrudeliaException {
+	 * 
+	 * Utente utente = utenteRepo.findById(idUtente) .orElseThrow(() -> new
+	 * CrudeliaException(msgS.getMessaggio("USER_NOT_FOUND")));
+	 * 
+	 * Optional<Carrello> carrelloOpt = carrelloRepo.findByUtenteId(idUtente);
+	 * 
+	 * Carrello carrello;
+	 * 
+	 * if (carrelloOpt.isPresent()) { carrello = carrelloOpt.get(); } else { if
+	 * (createIfMissing) { // ✅ Crea solo se esplicitamente richiesto carrello = new
+	 * Carrello(); carrello.setUtente(utente); carrello.setProdotti(new
+	 * ArrayList<>()); carrello.setStatoOrdine(StatoOrdine.NUOVO);
+	 * carrelloRepo.save(carrello); } else { // ✅ Se non devo creare, lancio
+	 * eccezione throw new CrudeliaException(msgS.getMessaggio("CART_NOT_FOUND")); }
+	 * }
+	 * 
+	 * return toCarrelloDTO(carrello); }
+	 */
 
-		CarrelloDTO carrelloDTO = getCarrelloByUtente(idUtente, false);
-
-		Carrello carrello = carrelloRepo.findById(carrelloDTO.getId())
-				.orElseThrow(() -> new CrudeliaException(msgS.getMessaggio("CART_NOT_FOUND")));
-
-		carrello.getProdotti().forEach(carrelloProRepo::delete);
-		carrello.getProdotti().clear();
-		carrelloRepo.save(carrello);
-
-	}
+	/*
+	 * @Override public void emptyCarrello(Integer idUtente) throws
+	 * CrudeliaException {
+	 * 
+	 * CarrelloRespDTO carrelloDTO = getCarrelloByUtente(idUtente, false);
+	 * 
+	 * Carrello carrello = carrelloRepo.findById(carrelloDTO.getId())
+	 * .orElseThrow(() -> new
+	 * CrudeliaException(msgS.getMessaggio("CART_NOT_FOUND")));
+	 * 
+	 * carrello.getProdotti().forEach(carrelloProRepo::delete);
+	 * carrello.getProdotti().clear(); carrelloRepo.save(carrello);
+	 * 
+	 * }
+	 */
 
 	public CarrelloDTO toCarrelloDTO(Carrello carrello) {
 		List<CarrelloProdottoDTO> prodottiDTO = carrello.getProdotti().stream().map(p -> CarrelloProdottoDTO.builder()
 				.id(p.getId())
 				.prodotto(ProdottoDTO.builder().id(p.getProdotto().getId())
-						.nomeProdotto(p.getProdotto().getNomeProdotto()).descrizione(p.getProdotto().getDescrizione())
-						.categoria(p.getProdotto().getCategoria()).tipoAnimale(p.getProdotto().getTipoAnimale())
-						.quantitaDisponibile(p.getProdotto().getQuantitaDisponibile())
-						.prezzo(p.getProdotto().getPrezzo()).immagineUrl(p.getProdotto().getImmagineUrl()).build()
+						.nomeProdotto(p.getProdotto().getNomeProdotto())
+						.descrizione(p.getProdotto().getDescrizione())
+						.categoria(p.getProdotto().getCategoria())
+						.tipoAnimale(p.getProdotto()
+						.getTipoAnimale())
+						.quantitaDisponibile(p.getProdotto()
+						 .getQuantitaDisponibile())
+						.prezzo(p.getProdotto().getPrezzo())
+						.immagineUrl(p.getProdotto().getImmagineUrl())
+						.build()
 
 				).quantitaRicheste(p.getQuantitaRichieste()).build()
 
@@ -104,6 +141,45 @@ public class CarrelloImpl implements ICarrelloServices {
 
 		return CarrelloDTO.builder().id(carrello.getId()).idUtente(carrello.getUtente().getId()).prodotti(prodottiDTO)
 				.build();
+	}
+	
+	
+	public CarrelloRespDTO toCarrelloRespDTO(Carrello car) {
+		
+		List<ProdottoDTO> pro=car.getProdotti().stream().map(
+				p->ProdottoDTO.builder()
+				.id(p.getProdotto().getId())
+				.nomeProdotto(p.getProdotto().getNomeProdotto())
+				.descrizione(p.getProdotto().getDescrizione())
+				.categoria(p.getProdotto().getCategoria())
+				.tipoAnimale(p.getProdotto()
+				.getTipoAnimale())
+				.quantitaDisponibile(p.getProdotto()
+				 .getQuantitaDisponibile())
+				.prezzo(p.getProdotto().getPrezzo())
+				.quantitaRicheste(p.getQuantitaRichieste())
+				.immagineUrl(p.getProdotto().getImmagineUrl())
+				.build()).collect(Collectors.toList());
+		
+		//Optional<Ordine> ordine=ordRepo.findByUtente_IdAndStatoOrdine(car.getUtente().getId(), car.getStatoOrdine());
+		
+      // Ordine ord=ordine.get();
+       
+
+       
+		return CarrelloRespDTO.builder()
+				.idUtente(car.getUtente().getId())
+				.prodotto(pro)
+				.build();
+				
+				
+			
+	}
+
+	@Override
+	public void emptyCarrello(Integer idUtente) throws CrudeliaException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

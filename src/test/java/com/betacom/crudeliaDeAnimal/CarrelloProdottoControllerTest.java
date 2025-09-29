@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.betacom.crudeliaDeAnimal.controller.CarrelloProdottoController;
-import com.betacom.crudeliaDeAnimal.dto.CarrelloDTO;
 import com.betacom.crudeliaDeAnimal.dto.ProdottoDTO;
 import com.betacom.crudeliaDeAnimal.models.Carrello;
 import com.betacom.crudeliaDeAnimal.models.CarrelloProdotto;
@@ -24,7 +23,7 @@ import com.betacom.crudeliaDeAnimal.repositories.ICarrelloRepository;
 import com.betacom.crudeliaDeAnimal.repositories.IProdottoRepository;
 import com.betacom.crudeliaDeAnimal.repositories.IUtenteRepository;
 import com.betacom.crudeliaDeAnimal.requests.CarrelloProdottoReq;
-import com.betacom.crudeliaDeAnimal.response.ResponseObject;
+import com.betacom.crudeliaDeAnimal.response.ResponseBase;
 import com.betacom.crudeliaDeAnimal.services.interfaces.IMessaggioServices;
 import com.betacom.crudeliaDeAnimal.utils.Roles;
 
@@ -100,7 +99,7 @@ public class CarrelloProdottoControllerTest {
 		req.setProdotto(prodottoDTO);
 		req.setQuantitaRicheste(2);
 		
-		ResponseObject<CarrelloDTO> r = carProCon.createProdotto(utente.getId(), req);
+		ResponseBase r = carProCon.createProdotto(utente.getId(), req);
 		
 		Assertions.assertThat(r.getRc()).isEqualTo(true);
 	}
@@ -131,7 +130,7 @@ public class CarrelloProdottoControllerTest {
 		req.setQuantitaRicheste(10);
 		
 		
-		ResponseObject<CarrelloDTO> r = carProCon.createProdotto(utente.getId(), req);
+		ResponseBase r = carProCon.createProdotto(utente.getId(), req);
 		
 		Assertions.assertThat(r.getRc()).isTrue();
 		
@@ -145,6 +144,7 @@ public class CarrelloProdottoControllerTest {
 		// Caso utente inesistente
 		
 		int idUtenteNonEsistente = 9999; 
+		
 		r = carProCon.createProdotto(idUtenteNonEsistente, req);
 		
 		Assertions.assertThat(r.getRc()).isEqualTo(false);
@@ -207,7 +207,7 @@ public class CarrelloProdottoControllerTest {
 		
 		req.setQuantitaRicheste(3);
 		
-		ResponseObject<CarrelloDTO> resp = carProCon.updateProdotto(ut.getId(), req);
+		ResponseBase resp = carProCon.updateProdotto(ut.getId(), req);
 		
 		Assertions.assertThat(resp.getRc()).isEqualTo(false);
 		
@@ -243,7 +243,7 @@ public class CarrelloProdottoControllerTest {
 		
 		Optional<Prodotto> pro = proRepo.findByNomeProdotto("Mangime per Pesci Tropicali");
 		
-		ResponseObject<CarrelloDTO> resp = carProCon.deleteProdotto(ut.get().getId(), pro.get().getId());
+		ResponseBase resp = carProCon.deleteProdotto(ut.get().getId(), pro.get().getId());
 		
 		Assertions.assertThat(resp.getRc()).isEqualTo(false);
 		

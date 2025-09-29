@@ -20,6 +20,7 @@ public class ProdottoDTO {
     private String categoria;
     private String tipoAnimale;
     private Integer quantitaDisponibile;
+	private Integer quantitaRicheste;
     private String immagineUrl;
 
 }

@@ -98,7 +98,8 @@ public class OrdineImpl implements IOrdineServices {
         
         Ordine ordine = new Ordine();
         ordine.setUtente(utenteOpt.get());
-        ordine.setDataOrdine(req.getDataOrdine());
+        //ordine.setDataOrdine(req.getDataOrdine());
+        ordine.setDataOrdine(LocalDate.now());
         ordine.setStatoOrdine(StatoOrdine.ORDINATO);
         ordine.setTotaleOrdine(BigDecimal.ZERO);
         ordine.setCarrello(carrello);

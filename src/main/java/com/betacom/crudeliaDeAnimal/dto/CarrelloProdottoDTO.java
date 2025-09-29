@@ -17,7 +17,7 @@ public class CarrelloProdottoDTO {
 
 	private ProdottoDTO prodotto;
 	
-    private String statoProdotto;
+   // private String statoProdotto;
 
 	private Integer quantitaRicheste;
 
