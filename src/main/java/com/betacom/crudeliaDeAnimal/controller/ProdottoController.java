@@ -1,12 +1,17 @@
 package com.betacom.crudeliaDeAnimal.controller;
 
 import com.betacom.crudeliaDeAnimal.dto.ProdottoDTO;
+import com.betacom.crudeliaDeAnimal.models.Utente;
+import com.betacom.crudeliaDeAnimal.repositories.IUtenteRepository;
 import com.betacom.crudeliaDeAnimal.requests.ProdottoReq;
 import com.betacom.crudeliaDeAnimal.response.ResponseBase;
 import com.betacom.crudeliaDeAnimal.response.ResponseList;
 import com.betacom.crudeliaDeAnimal.response.ResponseObject;
 import com.betacom.crudeliaDeAnimal.services.interfaces.IProdottoServices;
 import lombok.extern.log4j.Log4j2;
+
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
@@ -15,80 +20,96 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("rest/prodotto")
 public class ProdottoController {
 
-private IProdottoServices IProS;
+	private IProdottoServices IProS;
+	private IUtenteRepository utenteRepo;
 
-    public ProdottoController(IProdottoServices IProS) {
-        this.IProS = IProS;
-    }
+	   public ProdottoController(IProdottoServices IProS, IUtenteRepository utenteRepo) {
+	        this.IProS = IProS;
+	        this.utenteRepo = utenteRepo;
+	    }
+	   
+	@GetMapping("listAll")
+	public ResponseList<ProdottoDTO> listAll() {
+		ResponseList<ProdottoDTO> r = new ResponseList<>();
 
-    @GetMapping("listAll")
-	public ResponseList<ProdottoDTO> listAll(){
-        ResponseList<ProdottoDTO> r = new ResponseList<>();
+		try {
+			r.setRc(true);
+			r.setDati(IProS.listAll());
+		} catch (Exception e) {
+			r.setMsg(e.getMessage());
+			r.setRc(false);
+		}
+		return r;
+	}
 
-        try {
-            r.setRc(true);
-            r.setDati(IProS.listAll());
-        }catch (Exception e){
-            r.setMsg(e.getMessage());
-            r.setRc(false);
-        }
-        return r;
-    }
+	@GetMapping("/findById")
 
-    @GetMapping("/findById")
+	public ResponseObject<ProdottoDTO> findById(@RequestParam(required = true) Integer id) {
+		
+		ResponseObject<ProdottoDTO> r = new ResponseObject<ProdottoDTO>();
+		try {
+			r.setRc(true);
+			r.setDati(IProS.findById(id));
+		} catch (Exception e) {
+			r.setMsg(e.getMessage());
+			r.setRc(false);
+		}
+		return r;
+	}
 
-    public ResponseObject<ProdottoDTO> findById(@RequestParam(required = true) Integer id) {
-        ResponseObject<ProdottoDTO> r = new ResponseObject<ProdottoDTO>();
-        try {
-            r.setRc(true);
-            r.setDati(IProS.findById(id));
-        }catch (Exception e){
-            r.setMsg(e.getMessage());
-            r.setRc(false);
-        }
-        return r;
-    }
+	@PostMapping("/create")
 
-    @PostMapping("/create")
+	public ResponseBase create(@RequestBody(required = true) ProdottoReq req) {
+		ResponseBase r = new ResponseBase();
+		try {
+			r.setRc(true);
 
-    public ResponseBase create(@RequestBody(required = true) ProdottoReq req) {
-        ResponseBase r = new ResponseBase();
-        try {
-            r.setRc(true);
-            IProS.create(req);
-        }catch (Exception e){
-            r.setMsg(e.getMessage());
-            r.setRc(false);
-        }
-        return r;
-    }
+			Optional<Utente> userOp = utenteRepo.findById(req.getUserId());
 
-    @PostMapping("/delete")
+			Utente user = userOp.get();
 
-    public ResponseBase delete(@RequestBody(required = true) ProdottoReq req) {
-        ResponseBase r = new ResponseBase();
+			IProS.create(user, req);
 
-        try {
-            r.setRc(true);
-            ProdottoDTO p = IProS.delete(req);
-        }catch (Exception e){
-            r.setMsg(e.getMessage());
-            r.setRc(false);
-        }
-        return r;
-    }
+		} catch (Exception e) {
+			r.setMsg(e.getMessage());
+			r.setRc(false);
+		}
+		return r;
+	}
 
-    @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) ProdottoReq req) {
-        ResponseBase r = new ResponseBase();
+	@PostMapping("/delete")
 
-        try {
-            r.setRc(true);
-             IProS.update(req);
-        }catch (Exception e){
-            r.setMsg(e.getMessage());
-            r.setRc(false);
-        }
-        return r;
-    }
+	public ResponseBase delete(@RequestBody(required = true) ProdottoReq req) {
+		ResponseBase r = new ResponseBase();
+
+		try {
+			
+			Optional<Utente> userOp = utenteRepo.findById(req.getUserId());
+
+			Utente user = userOp.get();
+			r.setRc(true);
+			IProS.delete(user, req);
+		} catch (Exception e) {
+			r.setMsg(e.getMessage());
+			r.setRc(false);
+		}
+		return r;
+	}
+
+	@PostMapping("/update")
+	public ResponseBase update(@RequestBody(required = true) ProdottoReq req) {
+		ResponseBase r = new ResponseBase();
+
+		try {
+			Optional<Utente> userOp = utenteRepo.findById(req.getUserId());
+
+			Utente user = userOp.get();
+			r.setRc(true);
+			IProS.update(user, req);
+		} catch (Exception e) {
+			r.setMsg(e.getMessage());
+			r.setRc(false);
+		}
+		return r;
+	}
 }

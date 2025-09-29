@@ -26,4 +26,6 @@ public class ProdottoReq {
 	private Integer quantitaDisponibile;
 
 	private String immagineUrl;
+	
+	private Integer userId;
 }
