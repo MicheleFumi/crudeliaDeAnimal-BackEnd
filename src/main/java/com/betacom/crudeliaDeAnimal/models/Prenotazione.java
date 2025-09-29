@@ -29,9 +29,9 @@ public class Prenotazione {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	
-	 @ManyToOne(fetch = FetchType.EAGER)
+
+
+     @ManyToOne(fetch = FetchType.EAGER)
 	    @JoinColumn(name = "id_utente", nullable = false)
 	    private Utente utente;
 
@@ -55,7 +55,7 @@ public class Prenotazione {
 	    @Column(name = "stato_visita",nullable = false, length = 50)
 		@Enumerated(EnumType.STRING)
 	    private StatoVisita statoVisita;
-	    
+
 	    @Column(name = "tipo_pagamento",nullable = false, length = 50)
 		@Enumerated(EnumType.STRING)
 	    private TipoPagamenti tipoPagamento;  // online , inSede
