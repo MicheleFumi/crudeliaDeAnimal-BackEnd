@@ -13,6 +13,5 @@ public interface IVeterinarioRepository extends JpaRepository<Veterinario, Integ
 	List<Veterinario> findByRegione(String regione);
 	List<Veterinario> findByCap(String cap);
 
-  List<Veterinario> findByUtente_id(String utente);
-
+  List<Veterinario> findByUtente_id(Integer utenteId);
 }

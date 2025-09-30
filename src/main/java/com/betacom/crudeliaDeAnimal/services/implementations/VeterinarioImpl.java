@@ -200,8 +200,7 @@ public class VeterinarioImpl implements IVeterinarioServices{
 					.build();
 	}
 
-  @Override
-  public List<VeterinarioDTO> findByIdUtente(Integer id) throws CrudeliaException {
+  /* public List<VeterinarioDTO> findByIdUtente(Integer id) throws CrudeliaException {
 
     log.debug("findById:" + id);
 
@@ -222,7 +221,7 @@ public class VeterinarioImpl implements IVeterinarioServices{
       .serviziVO(vet.get().getServiziVO())
       .orariApertura(vet.get().getOrariApertura())
       .build();
-  }
+  } */
 
 	@Override
 	public List<VeterinarioDTO> findByCap(String cap) throws CrudeliaException {
