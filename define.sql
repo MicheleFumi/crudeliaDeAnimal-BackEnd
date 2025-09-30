@@ -46,6 +46,7 @@
         id integer not null auto_increment,
         id_ordine integer not null,
         id_prodotto integer not null,
+        id_utente integer not null,
         quantita integer not null,
         primary key (id)
     ) engine=InnoDB;
@@ -58,7 +59,7 @@
         id_veterinario integer not null,
         ora_visita time(6) not null,
         motivo_visita varchar(255) not null,
-        stato_visita enum ('ANNULLATA','CONFERMATA','IN_LAVORAZIONE','valueOf') not null,
+        stato_visita enum ('ANNULLATA','CONFERMATA','IN_LAVORAZIONE') not null,
         tipo_pagamento enum ('CARTA','CONTANTI','PAYPAL') not null,
         primary key (id)
     ) engine=InnoDB;
@@ -91,6 +92,7 @@
 
     create table `veterinario-ospedali` (
         id integer not null auto_increment,
+        id_utente integer,
         telefono varchar(20) not null,
         cap varchar(255) not null,
         email varchar(255) not null,
@@ -150,6 +152,11 @@
        foreign key (id_prodotto) 
        references `prodotto-animali` (id);
 
+    alter table ordine_prodotto 
+       add constraint FKc0xlqewkm3w4x7yy9ejd2bxi8 
+       foreign key (id_utente) 
+       references utente (id);
+
     alter table prenotazione_visita 
        add constraint FKk8jsyvh3fovv8qyoon6nkthwd 
        foreign key (id_animale) 
@@ -164,3 +171,8 @@
        add constraint FKp23s68frh403uulxkep6dcbu0 
        foreign key (id_veterinario) 
        references `veterinario-ospedali` (id);
+
+    alter table `veterinario-ospedali` 
+       add constraint FK9sq3ef870hfbhsccnm6aifekq 
+       foreign key (id_utente) 
+       references utente (id);

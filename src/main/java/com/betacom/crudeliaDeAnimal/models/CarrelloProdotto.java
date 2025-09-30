@@ -26,21 +26,21 @@ import lombok.Setter;
 @Table (name="carrello_prodotti")
 public class CarrelloProdotto {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "carrello_id", nullable = false)
-    private Carrello carrello;
+  @ManyToOne
+  @JoinColumn(name = "carrello_id", nullable = false)
+  private Carrello carrello;
 
-    @ManyToOne
-    @JoinColumn(name = "prodotto_id", nullable = false)
-    private Prodotto prodotto;
-    
-    @Column(name = "stato_ordine", length = 50, nullable = false)
+  @ManyToOne
+  @JoinColumn(name = "prodotto_id", nullable = false)
+  private Prodotto prodotto;
+
+  @Column(name = "stato_ordine", length = 50, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private StatoProdotto statoProdotto;
 
-    private Integer quantitaRichieste;
-   
+  private Integer quantitaRichieste;
+
 }
