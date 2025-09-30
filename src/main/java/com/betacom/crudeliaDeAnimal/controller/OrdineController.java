@@ -30,7 +30,7 @@ public class OrdineController {
        
     }
     @GetMapping("listAll")
-    ResponseList<OrdineDTO> listAll(){
+   public ResponseList<OrdineDTO> listAll(){
         ResponseList<OrdineDTO> r = new ResponseList<>();
 
         try {
@@ -113,4 +113,6 @@ public class OrdineController {
         }
         return r;
     }
+    
+    
 }

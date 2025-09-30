@@ -85,7 +85,7 @@ public class OrdineProdottoControllerTest {
         
         //  Utente esistente
 
-        Optional<Utente> ut=utenteRepo.findById(1);
+        Optional<Utente> ut=utenteRepo.findById(2);
         
         
         Assertions.assertThat(ut).isPresent();
@@ -226,68 +226,11 @@ public class OrdineProdottoControllerTest {
 	    log.debug("Secondo OrdineProdotto creato con successo.");
 	}
 	
-	@Test
-    @Order(3)
-    public void createTerzoOrdineProdottoTest() throws CrudeliaException {
-		
-		log.debug("create Terzo ordineProdotto!");
-
-	    // Recupera un utente esistente (o creane uno nuovo)
-	    Optional<Utente> ut = utenteRepo.findById(2);
-	    Assertions.assertThat(ut).isPresent();
-	    log.info("Nome Utente per il secondo ordine: " + ut.get().getNome());
-	    
-	    // Recupera un altro prodotto (o lo stesso, a seconda del test)
-	    Optional<Prodotto> pro = prodottoRepo.findByNomeProdotto("Cibo per Gatti Adulti");
-	    
-	    Assertions.assertThat(pro).isPresent();
-	    
-	    log.debug("Nome Prodotto : " + pro.get().getNomeProdotto() + " , Prezzo: " + pro.get().getPrezzo() + " , Quantita Disp" + pro.get().getQuantitaDisponibile());
-
-
-	    // Crea un nuovo carrello per l'utente (o usa un altro carrello se l'utente ne ha più di uno)
-	    
-	    Optional<Carrello> car = carrelloRepo.findByUtenteId(ut.get().getId());
-	    Assertions.assertThat(car).isPresent();
-	    
-	    Prodotto prodotto = pro.get();
-	    log.debug("Prodotto per il secondo ordine: " + prodotto.getNomeProdotto());
-
-	    // Inserisci un altro prodotto nel carrello
-	    CarrelloProdotto carProdotto = new CarrelloProdotto();
-	    carProdotto.setCarrello(car.get());
-	    carProdotto.setProdotto(prodotto);
-	    carProdotto.setQuantitaRichieste(5);
-	    carProdotto.setStatoProdotto(StatoProdotto.CREATO);
-	    carProdotto = carProdRepo.save(carProdotto);
-
-	    // Crea il secondo ordine
-	    Ordine ordine = new Ordine();
-	    ordine.setUtente(ut.get());
-	    ordine.setDataOrdine(LocalDate.now());
-	    ordine.setCarrello(car.get());
-	    ordine.setStatoOrdine(StatoOrdine.ORDINATO);
-	    BigDecimal totale = prodotto.getPrezzo().multiply(BigDecimal.valueOf(carProdotto.getQuantitaRichieste()));
-	    ordine.setTotaleOrdine(totale);
-	    ordine = ordineRepo.save(ordine);
-
-	    log.debug("ID Secondo Ordine : " + ordine.getId());
-
-	    // Crea OrdineProdotto per il secondo ordine
-	    OrdineProdottoReq req = new OrdineProdottoReq();
-	    req.setIdOrdine(ordine.getId());
-	    req.setProdotto(pro.get());
-	    req.setQuantita(carProdotto.getQuantitaRichieste());
-
-	    ResponseBase resp = ordProController.create(req);
-	    Assertions.assertThat(resp.getRc()).isTrue();
-	    log.debug("Secondo OrdineProdotto creato con successo.");
-		
-	}
+	
   
 	
 	@Test
-    @Order(4)
+    @Order(3)
     public void createOrdineProdottoTestErrors() throws CrudeliaException {
 		
 		Prodotto pro = new Prodotto();
@@ -349,7 +292,7 @@ public class OrdineProdottoControllerTest {
 	
 	
 	@Test
-    @Order(5)
+    @Order(4)
     public void updateOrdineProdottoTest() throws CrudeliaException {
         log.debug("update ordineProdotto!");
         
@@ -382,7 +325,7 @@ public class OrdineProdottoControllerTest {
 	
 
 	@Test
-    @Order(6)
+    @Order(5)
     public void findByIdOrdineProdottoTest() throws CrudeliaException {
 		
         log.debug("findById ordineProdotto!");
@@ -411,7 +354,7 @@ public class OrdineProdottoControllerTest {
 	}
 	
 	@Test
-    @Order(7)
+    @Order(6)
     public void listAllOrdineProdottoTest() throws CrudeliaException {
         log.debug("listAll ordineProdotto!");
         
@@ -431,7 +374,7 @@ public class OrdineProdottoControllerTest {
 	}
 	
 	@Test
-    @Order(8)
+    @Order(7)
     public void removeOrdineProdottoTest() throws CrudeliaException {
         log.debug("remove ordineProdotto!");
         

@@ -80,7 +80,7 @@ public class OrdineImpl implements IOrdineServices {
 	    log.info("Ordini trovati per utente {}: {}", idUtente, ordini.size()); // <- log
 
 	    if (ordini.isEmpty()) {
-	        throw new CrudeliaException("Nessun ordine trovato per utente con id: " + idUtente);
+	        throw new CrudeliaException(msgS.getMessaggio("USER_NOT_FOUND"));
 	    }
 	    return ordini.stream()
                 .map(this::toOrdineDTO)
@@ -165,35 +165,59 @@ public class OrdineImpl implements IOrdineServices {
     @Override
     public void update(OrdineReq req) throws CrudeliaException {
     	
-        log.debug("Update Ordine: " + req);
+    	log.debug("Update Ordine (quantità + stock + totale): " + req);
 
+        // 1️⃣ Recupera l'ordine
     	
-       Ordine o = ordR.findById(req.getId())
-          .orElseThrow(() -> new CrudeliaException(msgS.getMessaggio("ORDER_NOT_FOUND")));
-       
-       o.setDataOrdine(req.getDataOrdine());
+        Ordine ordine = ordR.findById(req.getId())
+                .orElseThrow(() -> new CrudeliaException(msgS.getMessaggio("ORDER_NOT_FOUND")));
 
-       
-        Optional<Utente> ut = uteR.findById(req.getIdUtente());
-        if (ut.isEmpty()) {
-
-            throw new CrudeliaException(msgS.getMessaggio("USER_NOT_FOUND"));
+        if (req.getDettagliOrdine() == null || req.getDettagliOrdine().isEmpty()) {
+            throw new CrudeliaException(msgS.getMessaggio("PRODUCT_LIST_EMPTY"));
         }
-        
-        o.setUtente(ut.get());
-        
-        try {
-            o.setStatoOrdine(StatoOrdine.valueOf(req.getStatoOrdine()));
-        } catch (IllegalArgumentException e) {
-            throw new CrudeliaException(msgS.getMessaggio("INVALID_ORDER_STATUS"));
-        }
-        
 
-        ordR.save(o);
-    
+        BigDecimal totaleOrdine = BigDecimal.ZERO;
+
+        for (OrdineProdottoReq opReq : req.getDettagliOrdine()) {
+            if (opReq.getProdotto() == null || opReq.getProdotto().getId() == null) {
+                throw new CrudeliaException(msgS.getMessaggio("PRODUCT_NOT_FOUND"));
+            }
+
+            // 2️⃣ Recupera OrdineProdotto esistente
+            OrdineProdotto op = orProR.findByOrdineIdAndProdottoId(ordine.getId(), opReq.getProdotto().getId())
+                    .orElseThrow(() -> new CrudeliaException(msgS.getMessaggio("PRODUCT_NOT_IN_ORDER")));
+
+            // 3️⃣ Controllo validità quantità
+            if (opReq.getQuantita() == null || opReq.getQuantita() <= 0) {
+                throw new CrudeliaException(msgS.getMessaggio("INVALID_QUANTITY"));
+            }
+
+            // 4️⃣ Aggiorna disponibilità prodotto
+            int differenza = opReq.getQuantita() - op.getQuantita(); // incremento o decremento
+            int nuovaDisponibilita = op.getProdotto().getQuantitaDisponibile() - differenza;
+
+            if (nuovaDisponibilita < 0) {
+                throw new CrudeliaException(msgS.getMessaggio("PRODUCT_INVALID_STOCK") + ": " + op.getProdotto().getNomeProdotto());
+            }
+
+            op.getProdotto().setQuantitaDisponibile(nuovaDisponibilita);
+            prodR.save(op.getProdotto());
+
+            // 5️⃣ Aggiorna quantità OrdineProdotto
+            op.setQuantita(opReq.getQuantita());
+            orProR.save(op);
+
+            // 6️⃣ Aggiorna totale ordine
+            totaleOrdine = totaleOrdine.add(op.getProdotto().getPrezzo().multiply(BigDecimal.valueOf(op.getQuantita())));
+        }
+
+        // 7️⃣ Salva totale aggiornato
+        ordine.setTotaleOrdine(totaleOrdine);
+        ordR.save(ordine);
+    }
  
 
-  }
+  
     
 
     @Override

@@ -17,15 +17,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.betacom.crudeliaDeAnimal.controller.CarrelloController;
 import com.betacom.crudeliaDeAnimal.dto.CarrelloDTO;
 import com.betacom.crudeliaDeAnimal.dto.CarrelloProdottoDTO;
+import com.betacom.crudeliaDeAnimal.dto.CarrelloRespDTO;
 import com.betacom.crudeliaDeAnimal.exception.CrudeliaException;
 import com.betacom.crudeliaDeAnimal.models.Carrello;
 import com.betacom.crudeliaDeAnimal.models.CarrelloProdotto;
 import com.betacom.crudeliaDeAnimal.models.Prodotto;
 import com.betacom.crudeliaDeAnimal.models.Utente;
+import com.betacom.crudeliaDeAnimal.repositories.ICarrelloProdottoRepository;
 import com.betacom.crudeliaDeAnimal.repositories.ICarrelloRepository;
+import com.betacom.crudeliaDeAnimal.repositories.IProdottoRepository;
 import com.betacom.crudeliaDeAnimal.repositories.IUtenteRepository;
 import com.betacom.crudeliaDeAnimal.response.ResponseBase;
 import com.betacom.crudeliaDeAnimal.services.implementations.CarrelloImpl;
+import com.betacom.crudeliaDeAnimal.services.interfaces.ICarrelloServices;
 import com.betacom.crudeliaDeAnimal.services.interfaces.IMessaggioServices;
 import com.betacom.crudeliaDeAnimal.utils.Roles;
 import com.betacom.crudeliaDeAnimal.utils.StatoOrdine;
@@ -50,6 +54,17 @@ public class CarrelloControllerTest {
 
 	@Autowired
 	private IMessaggioServices messServ;
+	
+	@Autowired
+	private  IProdottoRepository proRepo;
+	
+	@Autowired
+	private ICarrelloProdottoRepository carProRepo;
+	
+	@Autowired
+	private ICarrelloServices carSer;
+
+	
 
 	@Test
 
@@ -133,13 +148,13 @@ public class CarrelloControllerTest {
 		// 1. Utente senza carrello → CART_NOT_FOUND
 
 		Utente utSenzaCarrello = new Utente();
-		utSenzaCarrello.setNome("Marco");
-		utSenzaCarrello.setCognome("Rossi");
-		utSenzaCarrello.setEmail("marco.rossi@test.com");
-		utSenzaCarrello.setCodiceFiscale("MRCRSS99A01H501X");
-		utSenzaCarrello.setTelefono("3331234567");
-		utSenzaCarrello.setIndirizzo("Via Roma 10");
-		utSenzaCarrello.setPassword("password");
+		utSenzaCarrello.setNome("Salah");
+		utSenzaCarrello.setCognome("Fawzi");
+		utSenzaCarrello.setEmail("s.fawzi@test.com");
+		utSenzaCarrello.setCodiceFiscale("SEHSDHEUDH87HSDH");
+		utSenzaCarrello.setTelefono("334492849457");
+		utSenzaCarrello.setIndirizzo("Via napoli 10");
+		utSenzaCarrello.setPassword("password12345");
 		utSenzaCarrello.setRole(Roles.USER);
 		utSenzaCarrello.setDataRegistrazione(LocalDate.now());
 		utSenzaCarrello = utenteRepo.save(utSenzaCarrello);
@@ -152,7 +167,6 @@ public class CarrelloControllerTest {
 
 		Assertions.assertThat(resp.getMsg()).isEqualTo(messServ.getMessaggio("CART_NOT_FOUND"));
 
-		log.debug(" Utente con carrello e prodotti");
 
 		// Utente con carrello e prodotti
 
@@ -190,5 +204,13 @@ public class CarrelloControllerTest {
 		Assertions.assertThat(resp.getMsg()).isEqualTo("USER_NOT_FOUND");
 
 	}
+	
+	
+
+
+
+	
+	
+	
 	
 }

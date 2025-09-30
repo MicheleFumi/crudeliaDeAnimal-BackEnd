@@ -3,6 +3,7 @@ package com.betacom.crudeliaDeAnimal;
 import lombok.extern.log4j.Log4j2;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -18,11 +19,14 @@ import com.betacom.crudeliaDeAnimal.controller.ProdottoController;
 import com.betacom.crudeliaDeAnimal.dto.ProdottoDTO;
 import com.betacom.crudeliaDeAnimal.dto.VeterinarioDTO;
 import com.betacom.crudeliaDeAnimal.exception.CrudeliaException;
+import com.betacom.crudeliaDeAnimal.models.Utente;
 import com.betacom.crudeliaDeAnimal.repositories.IProdottoRepository;
+import com.betacom.crudeliaDeAnimal.repositories.IUtenteRepository;
 import com.betacom.crudeliaDeAnimal.requests.ProdottoReq;
 import com.betacom.crudeliaDeAnimal.response.ResponseBase;
 import com.betacom.crudeliaDeAnimal.response.ResponseList;
 import com.betacom.crudeliaDeAnimal.response.ResponseObject;
+import com.betacom.crudeliaDeAnimal.utils.Roles;
 
 @Log4j2
 @SpringBootTest
@@ -33,6 +37,9 @@ public class ProdottoControllerTest {
 	
 	@Autowired
     private IProdottoRepository iproRep;
+	
+	@Autowired
+	private IUtenteRepository utenteRepo;
 	
 	
 	@Test
@@ -49,6 +56,7 @@ public class ProdottoControllerTest {
         req.setTipoAnimale("Gatto");
         req.setQuantitaDisponibile(50);
         req.setImmagineUrl("prova bella ");
+        req.setUserId(1);
 		
         
         ResponseBase r = proCont.create(req);
@@ -69,13 +77,15 @@ public class ProdottoControllerTest {
 		 * r = proCont.create(req2); Assertions.assertThat(r.getRc()).isEqualTo(true);
 		 */
         ProdottoReq req2 = new ProdottoReq();
-        req2.setNomeProdotto("Cibo per Gatti Adulti");
-        req2.setDescrizione("Alimento bilanciato per gatti adulti, con proteine di alta qualità");
-        req2.setPrezzo(new BigDecimal("32.90"));
-        req2.setCategoria("Alimentazione");
+        req2.setNomeProdotto("Lettiera per Gatti Biodegradabile");
+        req2.setDescrizione("Lettiera ecologica, assorbente e profumata, ideale per la casa");
+        req2.setPrezzo(new BigDecimal("15.75"));
+        req2.setCategoria("Accessori");
         req2.setTipoAnimale("Gatto");
-        req2.setQuantitaDisponibile(150);
-        req2.setImmagineUrl("gatto.png");
+        req2.setQuantitaDisponibile(80);
+        req2.setImmagineUrl("lettiera_gatto.png");
+        req2.setUserId(1);
+
         r = proCont.create(req2); 
         Assertions.assertThat(r.getRc()).isEqualTo(true);
 
@@ -97,6 +107,7 @@ public class ProdottoControllerTest {
         req.setTipoAnimale("Gatto");
         req.setQuantitaDisponibile(0);
         req.setImmagineUrl("https://www.giordanoshop.com/800x.jpg");
+        req.setUserId(1);
         
         ResponseBase r = proCont.create(req);
         Assertions.assertThat(r.getRc()).isEqualTo(false);
@@ -127,6 +138,29 @@ public class ProdottoControllerTest {
         r = proCont.create(req);
         Assertions.assertThat(r.getRc()).isEqualTo(false);
         Assertions.assertThat(r.getMsg()).isEqualTo("PRODUCT_DUPLICATE");
+        
+        Utente nonAdmin = new Utente(); 
+        nonAdmin.setNome("Foad");
+        nonAdmin.setCognome("aldin");
+        nonAdmin.setEmail("f.aldin@test.com");
+        nonAdmin.setCodiceFiscale("YUHYREHFE*&HDJSM");
+        nonAdmin.setTelefono("837342932784");
+        nonAdmin.setIndirizzo("Via sard 10");
+        nonAdmin.setPassword("password1234");
+        nonAdmin.setRole(Roles.USER); // NON Admin
+        nonAdmin.setDataRegistrazione(LocalDate.now());
+
+        nonAdmin = utenteRepo.save(nonAdmin);
+        
+         req.setUserId(nonAdmin.getId());
+        
+         log.debug("non admin Id"+ nonAdmin.getId());
+         
+        ResponseBase r2 = proCont.create(req);
+        Assertions.assertThat(r2.getRc()).isEqualTo(false);
+        Assertions.assertThat(r2.getMsg()).isEqualTo("Permesso negato: solo Admin può aggiungere prodotti");
+        
+        
 	}
 	
 	@Test
@@ -142,6 +176,8 @@ public class ProdottoControllerTest {
         req.setTipoAnimale("Gatto");
         req.setQuantitaDisponibile(50);
         req.setImmagineUrl("prova bella ");
+        req.setUserId(1);
+
         
         ResponseBase r = proCont.update(req);
         Assertions.assertThat(r.getRc()).isEqualTo(true);
@@ -159,9 +195,17 @@ public class ProdottoControllerTest {
         req.setQuantitaDisponibile(50);
         req.setImmagineUrl("prova bella ");
         
+        
         r = proCont.update(req);
         Assertions.assertThat(r.getRc()).isEqualTo(false);
         Assertions.assertThat(r.getMsg()).isEqualTo("PRODUCT_NOT_FOUND");
+
+
+        
+        req.setUserId(4);
+        ResponseBase r2 = proCont.update(req);
+        Assertions.assertThat(r.getRc()).isEqualTo(false);
+        Assertions.assertThat(r2.getMsg()).isEqualTo("Permesso negato: solo Admin può modificare quantità");
 
 
 
@@ -232,6 +276,8 @@ public class ProdottoControllerTest {
         req.setTipoAnimale("Gatto");
         req.setQuantitaDisponibile(50);
         req.setImmagineUrl("prova bella ");
+        req.setUserId(1);
+
         
         ResponseBase r = proCont.delete(req);
         Assertions.assertThat(r.getRc()).isEqualTo(false);
@@ -252,16 +298,46 @@ public class ProdottoControllerTest {
         Assertions.assertThat(r.getRc()).isEqualTo(true);
         
         
-        r=proCont.listAll();
-        Assertions.assertThat(r).isInstanceOf(ResponseList.class);
-	    ResponseList<?> rList = (ResponseList<?>) r;
-
-	    Assertions.assertThat(rList.getRc()).isEqualTo(false);
-        Assertions.assertThat(r.getMsg()).isEqualTo("PRODUCT_NOT_FOUND");
-
         
+        Utente nonAdmin2 = new Utente(); 
+        nonAdmin2.setNome("Bahaa");
+        nonAdmin2.setCognome("mohammed");
+        nonAdmin2.setEmail("B.mohamed@test.com");
+        nonAdmin2.setCodiceFiscale("YHFHMSDE*&HDJSM");
+        nonAdmin2.setTelefono("564564");
+        nonAdmin2.setIndirizzo("Via cairo 10");
+        nonAdmin2.setPassword("123456");
+        nonAdmin2.setRole(Roles.USER); // NON Admin
+        nonAdmin2.setDataRegistrazione(LocalDate.now());
+
+        nonAdmin2 = utenteRepo.save(nonAdmin2);
+        
+         req.setUserId(nonAdmin2.getId());
+  
+        ResponseBase r3 = proCont.delete(req);
+        Assertions.assertThat(r3.getRc()).isEqualTo(false);
+        Assertions.assertThat(r3.getMsg()).isEqualTo("Permesso negato: solo Admin può cancellare prodotti");
 
 
 	}	
+	
+	
+	@Test
+    @Order(7)
+
+	public void listAllProdottiVuotoTest() {
+		
+	    log.debug("Test listAll: nessun prodotto presente");
+
+	    // svuota la tabella prodotti
+	    iproRep.deleteAll();
+	    
+	    ResponseBase resp=proCont.listAll();
+
+        Assertions.assertThat(resp.getRc()).isEqualTo(false);
+        Assertions.assertThat(resp.getMsg()).isEqualTo("PRODUCT_NOT_FOUND");
+
+	   
+	}
 
 }

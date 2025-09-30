@@ -82,43 +82,7 @@ public class CarrelloImpl implements ICarrelloServices {
 		return toCarrelloRespDTO(carrello);
 	}
 
-	/*
-	 * @Override public CarrelloDTO getCarrelloByUtente(Integer idUtente, boolean
-	 * createIfMissing) throws CrudeliaException {
-	 * 
-	 * Utente utente = utenteRepo.findById(idUtente) .orElseThrow(() -> new
-	 * CrudeliaException(msgS.getMessaggio("USER_NOT_FOUND")));
-	 * 
-	 * Optional<Carrello> carrelloOpt = carrelloRepo.findByUtenteId(idUtente);
-	 * 
-	 * Carrello carrello;
-	 * 
-	 * if (carrelloOpt.isPresent()) { carrello = carrelloOpt.get(); } else { if
-	 * (createIfMissing) { // ✅ Crea solo se esplicitamente richiesto carrello = new
-	 * Carrello(); carrello.setUtente(utente); carrello.setProdotti(new
-	 * ArrayList<>()); carrello.setStatoOrdine(StatoOrdine.NUOVO);
-	 * carrelloRepo.save(carrello); } else { // ✅ Se non devo creare, lancio
-	 * eccezione throw new CrudeliaException(msgS.getMessaggio("CART_NOT_FOUND")); }
-	 * }
-	 * 
-	 * return toCarrelloDTO(carrello); }
-	 */
 
-	/*
-	 * @Override public void emptyCarrello(Integer idUtente) throws
-	 * CrudeliaException {
-	 * 
-	 * CarrelloRespDTO carrelloDTO = getCarrelloByUtente(idUtente, false);
-	 * 
-	 * Carrello carrello = carrelloRepo.findById(carrelloDTO.getId())
-	 * .orElseThrow(() -> new
-	 * CrudeliaException(msgS.getMessaggio("CART_NOT_FOUND")));
-	 * 
-	 * carrello.getProdotti().forEach(carrelloProRepo::delete);
-	 * carrello.getProdotti().clear(); carrelloRepo.save(carrello);
-	 * 
-	 * }
-	 */
 
 	public CarrelloDTO toCarrelloDTO(Carrello carrello) {
 		List<CarrelloProdottoDTO> prodottiDTO = carrello.getProdotti().stream().map(p -> CarrelloProdottoDTO.builder()
@@ -161,9 +125,6 @@ public class CarrelloImpl implements ICarrelloServices {
 				.immagineUrl(p.getProdotto().getImmagineUrl())
 				.build()).collect(Collectors.toList());
 		
-		//Optional<Ordine> ordine=ordRepo.findByUtente_IdAndStatoOrdine(car.getUtente().getId(), car.getStatoOrdine());
-		
-      // Ordine ord=ordine.get();
        
 
        
@@ -179,6 +140,19 @@ public class CarrelloImpl implements ICarrelloServices {
 	@Override
 	public void emptyCarrello(Integer idUtente) throws CrudeliaException {
 		// TODO Auto-generated method stub
+		
+		  // Controllo utente
+	    Utente utente = utenteRepo.findById(idUtente)
+	        .orElseThrow(() -> new CrudeliaException("USER_NOT_FOUND"));
+
+	    // Controllo carrello
+	    Carrello carrello = carrelloRepo.findByUtenteId(idUtente)
+	        .orElseThrow(() -> new CrudeliaException(msgS.getMessaggio("CART_NOT_FOUND")));
+
+	    // Svuotamento carrello
+	    carrello.getProdotti().forEach(carrelloProRepo::delete);
+	    carrello.getProdotti().clear();
+	    carrelloRepo.save(carrello);
 		
 	}
 
