@@ -10,6 +10,7 @@ import java.util.List;
 public interface IOrdineServices {
 	
     OrdineDTO findById(Integer id) throws CrudeliaException;
+    List<OrdineDTO> findByUser(Integer idUtente) throws CrudeliaException;
     void create(OrdineReq req) throws CrudeliaException;
     void update(OrdineReq req) throws CrudeliaException;
     OrdineDTO delete(OrdineReq req) throws CrudeliaException;

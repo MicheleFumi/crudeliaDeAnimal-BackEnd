@@ -72,6 +72,22 @@ public class OrdineImpl implements IOrdineServices {
     }
 	
 
+	@Override
+	public List<OrdineDTO> findByUser(Integer idUtente) throws CrudeliaException {
+		
+		List<Ordine> ordini = ordR.findByUtenteId(idUtente);
+		
+	    log.info("Ordini trovati per utente {}: {}", idUtente, ordini.size()); // <- log
+
+	    if (ordini.isEmpty()) {
+	        throw new CrudeliaException("Nessun ordine trovato per utente con id: " + idUtente);
+	    }
+	    return ordini.stream()
+                .map(this::toOrdineDTO)
+                .collect(Collectors.toList());
+	}
+	
+
     @Override
     @Transactional
     public void create(OrdineReq req) throws CrudeliaException {
@@ -178,6 +194,7 @@ public class OrdineImpl implements IOrdineServices {
  
 
   }
+    
 
     @Override
     public OrdineDTO delete(OrdineReq req) throws CrudeliaException {
@@ -257,6 +274,7 @@ public class OrdineImpl implements IOrdineServices {
 	
 		
 	}
+
 	
 
 	

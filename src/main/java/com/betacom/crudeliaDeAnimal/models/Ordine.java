@@ -51,7 +51,7 @@ public class Ordine {
 	@Column(name = "totale_ordine", nullable = false, precision = 10, scale = 2)
 	private BigDecimal totaleOrdine;
 
-	@OneToMany(mappedBy = "ordine", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "ordine", cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	private List<OrdineProdotto> dettagliOrdine;
 
 }
