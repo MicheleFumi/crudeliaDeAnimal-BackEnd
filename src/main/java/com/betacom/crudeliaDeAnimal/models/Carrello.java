@@ -28,18 +28,18 @@ import lombok.Setter;
 @Table(name = "carrelli")
 public class Carrello {
 	 @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Integer id;
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer id;
 
-	    @OneToOne
-	    @JoinColumn(name = "utente_id", nullable = false)
-	    private Utente utente;
+   @OneToOne
+   @JoinColumn(name = "utente_id", nullable = false)
+   private Utente utente;
 
-	    @OneToMany(mappedBy = "carrello", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	    private List<CarrelloProdotto> prodotti = new ArrayList<>();
-	    
-	    @Column(name = "stato_ordine", length = 50, nullable = false)
-		@Enumerated(EnumType.STRING)
+   @OneToMany(mappedBy = "carrello", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   private List<CarrelloProdotto> prodotti = new ArrayList<>();
+
+   @Column(name = "stato_ordine", length = 50, nullable = false)
+   @Enumerated(EnumType.STRING)
 		private StatoOrdine statoOrdine;
-	   
+
 }

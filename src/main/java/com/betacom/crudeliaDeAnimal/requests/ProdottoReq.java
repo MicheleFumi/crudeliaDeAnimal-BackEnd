@@ -2,6 +2,7 @@ package com.betacom.crudeliaDeAnimal.requests;
 
 import java.math.BigDecimal;
 
+import com.betacom.crudeliaDeAnimal.models.Utente;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,7 +14,9 @@ public class ProdottoReq {
 
 	private Integer id;
 
-	private String nomeProdotto;
+  private Utente utente;
+
+  private String nomeProdotto;
 
 	private String descrizione;
 

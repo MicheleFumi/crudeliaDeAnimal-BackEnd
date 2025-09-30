@@ -31,6 +31,10 @@
        drop 
        foreign key FKckes7nsoopbs4gjsxeekuwknu;
 
+    alter table ordine_prodotto 
+       drop 
+       foreign key FKc0xlqewkm3w4x7yy9ejd2bxi8;
+
     alter table prenotazione_visita 
        drop 
        foreign key FKk8jsyvh3fovv8qyoon6nkthwd;
@@ -42,6 +46,10 @@
     alter table prenotazione_visita 
        drop 
        foreign key FKp23s68frh403uulxkep6dcbu0;
+
+    alter table `veterinario-ospedali` 
+       drop 
+       foreign key FK9sq3ef870hfbhsccnm6aifekq;
 
     drop table if exists animale;
 

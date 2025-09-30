@@ -1,5 +1,6 @@
 package com.betacom.crudeliaDeAnimal.dto;
 
+import com.betacom.crudeliaDeAnimal.models.Utente;
 import com.betacom.crudeliaDeAnimal.utils.ServizioVeterinarioOspedale;
 import com.betacom.crudeliaDeAnimal.utils.StruttureSanitarie;
 
@@ -16,6 +17,7 @@ import lombok.ToString;
 public class VeterinarioDTO {
 
 	private Integer id;
+    private Utente utente;
 	private String nome;
 	private StruttureSanitarie tipostruttura; // "Clinica", "Ospedale"
 	private String indirizzo;

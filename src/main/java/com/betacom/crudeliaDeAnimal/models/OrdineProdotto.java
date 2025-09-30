@@ -16,10 +16,14 @@ import lombok.Setter;
 @Entity
 @Table (name="ordine_Prodotto")
 public class OrdineProdotto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "id_utente", nullable = false)
+  private Utente utente;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_ordine", nullable = false)
@@ -28,7 +32,7 @@ public class OrdineProdotto {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_prodotto", nullable = false)
 	private Prodotto prodotto;
-	
+
 	@Column(nullable = false)
 	private Integer quantita;
 }

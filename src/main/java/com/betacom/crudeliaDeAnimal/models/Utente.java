@@ -23,43 +23,35 @@ import lombok.Setter;
 @Table(name = "Utente")
 public class Utente {
 
-	
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	
-    @Column(length = 255, nullable = false)
 
+  @Column(length = 255, nullable = false)
 	private String cognome;
-	
-    @Column(length = 255, nullable = false)
 
+  @Column(length = 255, nullable = false)
 	private String nome;
-	
-    
-    @Column(name = "codice_fiscale", length = 16, nullable = false, unique = true)
-    private String codiceFiscale;
 
-    @Column(length = 255, nullable = false)
+  @Column(name = "codice_fiscale", length = 16, nullable = false, unique = true)
+  private String codiceFiscale;
 
+  @Column(length = 255, nullable = false)
 	private String telefono;
-	
-    @Column(length = 255, nullable = false)
 
+  @Column(length = 255, nullable = false)
 	private String  email;
-	
-    @Column(length = 255, nullable = false)
+
+  @Column(length = 255, nullable = false)
 	private String  indirizzo;
-	
-    @Column(length = 255, nullable = false)
 
+  @Column(length = 255, nullable = false)
 	private String password;
-	
-    @Column(name = "data_registrazione",length = 255, nullable = false)
 
+  @Column(name = "data_registrazione",length = 255, nullable = false)
 	private LocalDate  dataRegistrazione;
-    
+
 	@Column(name = "role", length = 255, nullable = false)
 	@Enumerated(EnumType.STRING)
     private Roles role;

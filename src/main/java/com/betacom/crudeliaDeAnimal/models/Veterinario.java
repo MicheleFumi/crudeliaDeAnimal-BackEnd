@@ -3,14 +3,7 @@ package com.betacom.crudeliaDeAnimal.models;
 import com.betacom.crudeliaDeAnimal.utils.ServizioVeterinarioOspedale;
 import com.betacom.crudeliaDeAnimal.utils.StruttureSanitarie;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,22 +20,26 @@ public class Veterinario {
 	@Column(nullable = false, length = 255)
 	private String nome;
 
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "id_utente", nullable = true)
+  private Utente utente;
+
 	@Column(name = "strutture_sanitarie" ,nullable = false, length = 255)
 	@Enumerated(EnumType.STRING)
 	private StruttureSanitarie tipostrutture; // "Clinica", "Ospedale"
 
 	@Column(nullable = false, length = 255)
 	private String indirizzo;
-	
+
 	@Column(nullable = false, length = 255)
 	private String provincia;
-	
+
 	@Column(nullable = false, length = 255)
 	private String regione;
-	
+
 	@Column(nullable = false, length = 255)
 	private String cap;
-	
+
 
 	@Column(nullable = false, length = 20)
 	private String telefono;

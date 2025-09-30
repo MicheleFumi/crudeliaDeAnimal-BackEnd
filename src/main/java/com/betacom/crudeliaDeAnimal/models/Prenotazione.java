@@ -26,13 +26,12 @@ import lombok.Setter;
 @Table (name="prenotazione_visita")
 public class Prenotazione {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Integer id;
 
-
-     @ManyToOne(fetch = FetchType.EAGER)
-	    @JoinColumn(name = "id_utente", nullable = false)
+      @ManyToOne(fetch = FetchType.EAGER)
+      @JoinColumn(name = "id_utente", nullable = false)
 	    private Utente utente;
 
 	    @ManyToOne(fetch = FetchType.EAGER)
