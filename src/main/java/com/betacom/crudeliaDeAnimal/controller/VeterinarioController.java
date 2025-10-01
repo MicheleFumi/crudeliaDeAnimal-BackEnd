@@ -1,5 +1,7 @@
 package com.betacom.crudeliaDeAnimal.controller;
 
+import com.betacom.crudeliaDeAnimal.dto.SlotDTO;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import com.betacom.crudeliaDeAnimal.dto.VeterinarioDTO;
@@ -12,19 +14,21 @@ import com.betacom.crudeliaDeAnimal.services.interfaces.IVeterinarioServices;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDate;
+
 @CrossOrigin("*")
 @Slf4j
 @RestController
 @RequestMapping("/rest/veterinario")
 public class VeterinarioController {
-	
+
 	private IVeterinarioServices  vetSer;
 
 	public VeterinarioController(IVeterinarioServices vetSer) {
 		super();
 		this.vetSer = vetSer;
 	}
-	
+
 	@PostMapping("/create")
 	public ResponseBase create(@RequestBody (required = true) VeterinarioReq req) {
 		log.debug("create :" + req);
@@ -58,7 +62,7 @@ public class VeterinarioController {
 	public ResponseBase remove(@RequestBody (required = true) VeterinarioReq req) {
 		log.debug("remove :" + req);
 		ResponseBase r = new ResponseBase();
-		
+
 		try {
 			VeterinarioDTO veter =  vetSer.delete(req);
 			r.setRc(true);
@@ -69,7 +73,7 @@ public class VeterinarioController {
 		}
 		return r;
 	}
-	
+
 	@GetMapping("/list")
 	public ResponseList<VeterinarioDTO> listAll() {
 		log.debug("list ");
@@ -84,7 +88,7 @@ public class VeterinarioController {
 		}
 		return r;
 	}
-	
+
 	@GetMapping("/findById")
 	public ResponseObject<VeterinarioDTO> listById( Integer id) {
 		log.debug("list:"+ id );
@@ -100,14 +104,26 @@ public class VeterinarioController {
 		}
 		return r;
 	}
-	
+  @GetMapping("/findByIdUtente")
+  public ResponseList<VeterinarioDTO> findByIdUtente(@RequestParam Integer idUtente){
+    ResponseList<VeterinarioDTO> r = new ResponseList<>();
+    try {
+      r.setDati(vetSer.findByIdUtente(idUtente));
+      r.setRc(true);
+    } catch (CrudeliaException e) {
+      r.setMsg(e.getMessage());
+      r.setRc(false);
+    }
+    return r;
+  }
+
 	@GetMapping("/findByCap")
 	public ResponseList<VeterinarioDTO> listByCap( String cap) {
-		
+
 		log.debug("list:"+ cap );
-		
+
 		ResponseList<VeterinarioDTO> r = new ResponseList<VeterinarioDTO>();
-		
+
 
 		try{
 			r.setDati(vetSer.findByCap(cap));
@@ -119,7 +135,7 @@ public class VeterinarioController {
 		}
 		return r;
 	}
-	
+
 	@GetMapping("/findByProvincia")
 	public ResponseList<VeterinarioDTO> listByProvincia( String provincia) {
 		log.debug("list:"+ provincia );
@@ -135,7 +151,7 @@ public class VeterinarioController {
 		}
 		return r;
 	}
-	
+
 	@GetMapping("/findByRegione")
 	public ResponseList<VeterinarioDTO> listByRegione( String regione) {
 		log.debug("list:"+ regione );
@@ -152,5 +168,5 @@ public class VeterinarioController {
 		return r;
 	}
 
-	
+
 }
