@@ -21,10 +21,6 @@ public class OrdineProdotto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-  @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "id_utente", nullable = false)
-  private Utente utente;
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_ordine", nullable = false)
 	private Ordine ordine;

@@ -31,10 +31,6 @@
        drop 
        foreign key FKckes7nsoopbs4gjsxeekuwknu;
 
-    alter table ordine_prodotto 
-       drop 
-       foreign key FKc0xlqewkm3w4x7yy9ejd2bxi8;
-
     alter table prenotazione_visita 
        drop 
        foreign key FKk8jsyvh3fovv8qyoon6nkthwd;

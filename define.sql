@@ -46,7 +46,6 @@
         id integer not null auto_increment,
         id_ordine integer not null,
         id_prodotto integer not null,
-        id_utente integer not null,
         quantita integer not null,
         primary key (id)
     ) engine=InnoDB;
@@ -151,11 +150,6 @@
        add constraint FKckes7nsoopbs4gjsxeekuwknu 
        foreign key (id_prodotto) 
        references `prodotto-animali` (id);
-
-    alter table ordine_prodotto 
-       add constraint FKc0xlqewkm3w4x7yy9ejd2bxi8 
-       foreign key (id_utente) 
-       references utente (id);
 
     alter table prenotazione_visita 
        add constraint FKk8jsyvh3fovv8qyoon6nkthwd 
