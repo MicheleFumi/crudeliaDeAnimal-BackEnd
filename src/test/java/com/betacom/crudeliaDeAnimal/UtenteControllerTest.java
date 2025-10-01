@@ -129,7 +129,7 @@ public class UtenteControllerTest {
         req.setId(1);
         req.setNome("Maria");
         req.setCognome("Rossini");
-        req.setCodiceFiscale("RSSMRA85T10A562S");
+        req.setCodiceFiscale("VRDLGI90T20B157X");
         req.setEmail("mario.rossi@example.com");
         req.setIndirizzo("Via Milano 22, Roma");
         req.setPassword("hashedpassword1");
@@ -163,6 +163,8 @@ public class UtenteControllerTest {
     @Test
     @Order(8)
     public void signinTest()throws CrudeliaException{
+    	
+
         SignInReq req = new SignInReq();
         req.setEmail("mario.rossi@example.com");
         req.setPassword("hashedpassword1");

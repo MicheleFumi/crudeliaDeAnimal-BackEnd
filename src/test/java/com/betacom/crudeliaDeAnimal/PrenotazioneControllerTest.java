@@ -39,21 +39,24 @@ public class PrenotazioneControllerTest {
         req.setOraVisita(LocalTime.now());
         req.setMotivoVisita("visita");
         req.setStatoVisita(StatoVisita.CONFERMATA);
-        req.setTipoPagamento(TipoPagamenti.CARTA);
+        req.setTipoPagamento(TipoPagamenti.CONTANTI);
 
        ResponseBase r= preC.create(req);
         Assertions.assertThat(r.getRc()).isEqualTo(true);
 
-        req.setIdAnimale(2);
-        req.setIdUtente(2);
-        req.setIdVeterinario(1);
-        req.setDataVisita(LocalDate.now());
-        req.setOraVisita(LocalTime.now());
-        req.setMotivoVisita("visita");
-        req.setStatoVisita(StatoVisita.CONFERMATA);
-        req.setTipoPagamento(TipoPagamenti.CARTA);
+        
+        PrenotazioneReq req2 = new PrenotazioneReq();
 
-         r= preC.create(req);
+        req2.setIdAnimale(2);
+        req2.setIdUtente(2);
+        req2.setIdVeterinario(1);
+        req2.setDataVisita(LocalDate.now());
+        req2.setOraVisita(LocalTime.now());
+        req2.setMotivoVisita("visita");
+        req2.setStatoVisita(StatoVisita.CONFERMATA);
+        req2.setTipoPagamento(TipoPagamenti.CARTA);
+
+         r= preC.create(req2);
         Assertions.assertThat(r.getRc()).isEqualTo(true);
 
     }

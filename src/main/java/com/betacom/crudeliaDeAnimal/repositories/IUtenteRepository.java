@@ -15,4 +15,5 @@ public interface IUtenteRepository extends JpaRepository<Utente, Integer>{
     Optional<Utente> findByCodiceFiscale(String codiceFiscale);
 
     Optional<Utente> findByEmail(String email);
+   
 }
