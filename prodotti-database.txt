@@ -1,8 +1,6 @@
 INSERT INTO `prodotto-animali`
 (prezzo, quantita_disponibile, categoria, tipo_animale, immagine_url, descrizione, nome_prodotto)
-Values
-
-
+VALUES
 -- 🐶 CANE (5 prodotti)
 (19.99, 50, 'Alimentazione', 'Cane', 'https://i.ebayimg.com/images/g/c-EAAOSwvbtnq0Rs/s-l1600.jpg',
 'Crocchette premium al pollo 2,5kg', 'Crocchette Cane Pollo 2,5kg'),
@@ -15,7 +13,6 @@ Values
 (4.50, 100, 'Igiene', 'Cane', 'https://egress.storeden.net/gallery/664d945e00f2202bdcd8c6bd',
 'Shampoo delicato all avena 250ml', 'Shampoo Delicato'),
 
-
 -- 🐱 GATTO (5 prodotti)
 (17.99, 40, 'Alimentazione', 'Gatto', 'https://m.media-amazon.com/images/I/61ehPCuhniL.jpg',
 'Crocchette al salmone 3kg', 'Crocchette Gatto Salmone 3kg'),
@@ -27,6 +24,7 @@ Values
 'Lettiera agglomerante profumata 10kg', 'Lettiera Agglomerante'),
 (5.20, 80, 'Snack', 'Gatto', 'https://www.naturepetshop.it/wp-content/uploads/edgard_cooper_crucnchies_chicken_snack_per_gatti.jpg',
 'Snack al pollo croccanti 80g', 'Snack Pollo'),
+
 -- 🐦 UCCELLO (5 prodotti)
 (6.90, 80, 'Alimentazione', 'Uccello', 'https://www.legazinitaliashop.it/142-large_default/mix-semi-canarini-sindor%C3%A8-4kg.jpg',
 'Miscela semi per canarini 1kg', 'Semi Canarini'),
@@ -38,6 +36,7 @@ Values
 'Bastoncini al miele per pappagallini', 'Bastoncini Miele'),
 (9.90, 30, 'Accessori', 'Uccello', 'https://m.media-amazon.com/images/I/31VAD4su4BL._SR290,290_.jpg',
 'Altalena in legno per gabbia', 'Altalena Legno'),
+
 -- 🐠 PESCE (5 prodotti)
 (4.99, 200, 'Alimentazione', 'Pesce', 'https://static.zoomalia.com/cdn-cgi/image/width=800,height=800/prod_img/181682/xl_333310dcbbf4cce62f762a2aaa148d556bd1749714164.jpg',
 'Fiocchi nutrienti per pesci tropicali 200g', 'Fiocchi Tropicali'),
@@ -49,6 +48,7 @@ Values
 'Pianta artificiale per acquario 15cm', 'Pianta Acquario'),
 (8.80, 60, 'Trattamenti', 'Pesce', 'https://arcaplanet.vtexassets.com/arquivos/ids/282766/6729061f76ca58b7cea3f5684676df2f4d91dafc_3fb77b43e6af60c3066a90f87a5307eb5402cf0c.jpg?v=638155031984000000',
 'Biocondizionatore acqua dolce 250ml', 'Biocondizionatore'),
+
 -- 🐭 RODITORE (5 prodotti)
 (5.90, 60, 'Alimentazione', 'Roditore', 'https://bilder.obi-italia.it/241cf35d-bb06-4f21-98e9-6158670b07bf/prZZO/image.jpg',
 'Mangime completo per criceti 1kg', 'Mangime Criceti'),
@@ -60,6 +60,7 @@ Values
 'Gabbia modulare per criceti', 'Gabbia Criceto'),
 (7.40, 70, 'Lettiera', 'Roditore', 'https://www.hamiform.com/sites/uploads/2021/12/365-LITIERE-MA%C3%8FS-10L.jpg',
 'Lettiera di mais naturale 10L', 'Lettiera Mais'),
+
 -- 🦎 RETTILE (5 prodotti)
 (9.50, 40, 'Alimentazione', 'Rettile', 'https://m.media-amazon.com/images/I/71G9AKZyzAL._UF894,1000_QL80_.jpg',
 'Insetti essiccati per gechi 250g', 'Insetti Geco'),
@@ -70,5 +71,83 @@ Values
 (15.60, 25, 'Decorazioni', 'Rettile', 'https://m.media-amazon.com/images/I/517K0cjqHjL._UF894,1000_QL80_.jpg',
 'Set rocce decorative per terrario', 'Rocce Decorative'),
 (6.80, 50, 'Integratori', 'Rettile', 'https://m.media-amazon.com/images/I/61O0DJAthEL.jpg',
-'Calcio in polvere per rettili 100g', 'Calcio Polvere');
+'Calcio in polvere per rettili 100g', 'Calcio Polvere'),
 
+-- EXTRA (con minuscole normalizzate)
+(25.99, 50, 'Alimentazione', 'Cane', 'https://media.zooplus.com/bilder/5/400/70345_pla_monge_super_premium_lamb_rice_potato_12kg_5.jpg',
+'Crocchette Monge Superpremium per cani adulti di ogni razza: con il 38% della migliore carne di agnello e prebiotici naturali, per supportare il sistema immunitario e le articolazioni', 'Monge Superpremium All Breeds Adult Agnello'),
+
+(3.50, 40, 'Alimentazione', 'Gatto', 'https://media.zooplus.com/bilder/8/400/383501_pla_nestle_felix_fantastic_junior_pouches_4x85g_hs_01_8.jpg',
+'Alimento umido completo Felix per gattini (2-12 mesi), in pacco misto con 2 varietà, con teneri bocconcini di pollame o pesce in gelatina, senza coloranti artificiali, con taurina, ricco di vitamine', 'Felix Junior Fantastic'),
+
+(10.90, 60, 'Alimentazione', 'Uccello', 'https://media.zooplus.com/bilder/3/400/64918_pla_prestige_exoten_4kg_3.jpg',
+'Miscela di semi di qualità premium Versele-Laga Prestige Esotici per le esigenze nutrizionali di uccellini esotici, con miglio e panico naturali, ricca di vitamine, amminoacidi e minerali.', 'Versele-Laga Prestige Esotici'),
+
+(20.50, 55, 'Alimentazione', 'Roditore', 'https://media.zooplus.com/bilder/2/400/84184_pla_versele_nature_degu_2_3kg_2.jpg',
+'Mangime completo senza cereali Versele-Laga Nature Degu, a base di gustose erbette e verdure, ricco di fibre, indicato anche in caso di ipersensibilità alimentare, con preziose vitamine e minerali.', 'Versele-Laga Nature Degu'),
+
+(50.20, 30, 'Alimentazione', 'Pesce', 'https://media.zooplus.com/bilder/8/400/62564_pla_tetra_aqua_hs_01_8.jpg',
+'Mangime base TetraMin in fiocchi e scaglie per pesci ornamentali, costituito da un mix di sette tipologie diverse di fiocchi con oltre 40 materie prime di alta qualità, arricchito con prebiotici.', 'TetraMin Flakes mangime in fiocchi.'),
+
+(12.50, 20, 'Alimentazione', 'Rettile', 'https://www.agripetgarden.it/media/catalog/product/cache/39bb8e22b0fe81fa1cbd673da9751694/u/l/ultimate-breeder.jpg',
+'Polvere di banana, polvere di larve di Hermetia essiccate (Calci Worm), proteine di patata in polvere', 'Arcadia Stickyfoot Gold Ultimate Breeder'),
+
+(19.99, 100, 'Accessori', 'Cane',
+ 'https://www.ferplast.it/cdn/shop/files/1-0180018787_7dcb8c96-d25c-4450-9f6c-d07ef3761d2d_1800x1800.jpg?v=1728911760',
+ 'Distributore cibo e acqua per cani',
+ 'TOTA 2'),
+
+(32.50, 80, 'Accessori', 'Gatto',
+ 'https://d33ko0jf8f2gvx.cloudfront.net/images/products/carousel-v2/KippyCat/KippyCat-6.jpg',
+ 'Kippy CAT Collare GPS per Gatti - Il primo localizzatore GPS ideato per gatti',
+ 'Kippy CAT'),
+
+(45.00, 120, 'Accessori', 'Uccello',
+ 'https://m.media-amazon.com/images/I/61CaZG+vp8L._AC_SX679_.jpg',
+ 'Per uccelli: terreno di gioco per cocorite con posatoi, supporto tazza di alimentazione, scala, altalena e vassoio per cacatua. Legno, dimensioni 45x37x26 cm.',
+ 'WishesMar Parco Giochi per Pappagalli Palestra'),
+
+(10.50, 90, 'Accessori', 'Roditore',
+ 'https://m.media-amazon.com/images/I/81sWB3IkDwL._AC_SX679_.jpg',
+ 'Tubo e tunnel per conigli, lavabile, nascondiglio portatile per criceti, furetti, morbido rifugio per giocare e riposare, porcellini d''India, accessori',
+ 'Hedgeink Tunnel in tela per porcellini d''India'),
+
+(12.00, 50, 'Accessori', 'Pesce',
+ 'https://m.media-amazon.com/images/I/71ct-KWTBNL._AC_SY879_.jpg',
+ 'Filtro Acquario regolabile con pompa acqua 300L/H, filtro silenzioso con spugna filtrante e letto fluido, per acquari 20-75L, pesci e tartarughe (1W)',
+ 'Boxtech 5 in 1 Filtro Acquario Interno'),
+
+(10.00, 40, 'Accessori', 'Rettile',
+ 'https://m.media-amazon.com/images/I/71CNXqOwVOL._AC_SX679_.jpg',
+ 'Lampada riscaldante a infrarossi 100W per terrario, 2 pezzi – per tartarughe, serpenti e rettili [Classe di efficienza energetica A]',
+ 'Lampada Riscaldante'),
+
+(40.00, 40, 'Cucce', 'Gatto',
+ 'https://m.media-amazon.com/images/I/81K--7oxqDL._AC_SX679_.jpg',
+ 'Casetta robusta e morbida in lana neozelandese',
+ 'Cuccia XL per Gatti'),
+
+(20.50, 150, 'Cucce', 'Cane',
+ 'https://img.kwcdn.com/product/fancy/a5f9cc5b-3b16-44b7-85fd-a10382ae9a4d.jpg?imageView2/2/w/800/q/70/format/avif',
+ 'Cuccia staccabile in poliestere, durevole e facile da pulire',
+ 'Cuccia Calda Gatto'),
+
+(15.00, 50, 'Cucce', 'Uccello',
+ 'https://m.media-amazon.com/images/I/71WlevA2TcL._AC_SX679_.jpg',
+ 'Amaca morbida per pappagalli e parrocchetti',
+ 'Amaca per uccelli'),
+
+(10.00, 60, 'Cucce', 'Roditore',
+ 'https://m.media-amazon.com/images/I/71g1LT3tzbL._AC_SX679_.jpg',
+ 'Casetta in legno a più piani per porcellini d''India',
+ 'Porcellino d''India Casa'),
+
+(10.50, 40, 'Cucce', 'Pesce',
+ 'https://m.media-amazon.com/images/I/81qLF6292eL._AC_SX679_.jpg',
+ 'Nascondiglio in ceramica per piccoli pesci e gamberetti',
+ 'Rocce per acquario per piccoli pesci'),
+
+(35.00, 25, 'Cucce', 'Rettile',
+ 'https://m.media-amazon.com/images/I/71fsvQUbKyL._AC_SX679_.jpg',
+ 'Grotta in ceramica per terrari',
+ 'Exo Terra Big Rock');
