@@ -1,17 +1,12 @@
 package com.betacom.crudeliaDeAnimal.models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.betacom.crudeliaDeAnimal.utils.Roles;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -55,4 +50,11 @@ public class Utente {
 	@Column(name = "role", length = 255, nullable = false)
 	@Enumerated(EnumType.STRING)
     private Roles role;
+
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Carrello> carrelli = new ArrayList<>();
+
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Animale> animali = new ArrayList<>();
+
 }

@@ -108,6 +108,14 @@
     alter table carrelli 
        add constraint UKni131g1h3vvjgmsmp4r36iogf unique (utente_id);
 
+    ALTER TABLE carrelli
+        DROP FOREIGN KEY FKhye9ul5d25dx4fx9fu8fvvdv;
+
+    ALTER TABLE carrelli
+        ADD CONSTRAINT FKhye9ul5d25dx4fx9fu8fvvdv
+    FOREIGN KEY (utente_id) REFERENCES utente(id)
+        ON DELETE CASCADE;
+
     alter table utente 
        add constraint UK3vd7df1l1hnmhukq2bembt26n unique (codice_fiscale);
 
@@ -115,6 +123,14 @@
        add constraint FKpf8p7i5wdxiprfjjnpasqg0gr 
        foreign key (id_utente) 
        references utente (id);
+
+    ALTER TABLE animale
+       DROP FOREIGN KEY FKpf8p7i5wdxiprfjjnpasqg0gr;
+
+    ALTER TABLE animale
+       ADD CONSTRAINT FKpf8p7i5wdxiprfjjnpasqg0gr
+       FOREIGN KEY (id_utente) REFERENCES utente(id)
+       ON DELETE CASCADE;
 
     alter table carrelli 
        add constraint FKhye9ul5d25dx4fx9fu8fvvdv 
@@ -170,3 +186,7 @@
        add constraint FK9sq3ef870hfbhsccnm6aifekq 
        foreign key (id_utente) 
        references utente (id);
+
+
+
+
